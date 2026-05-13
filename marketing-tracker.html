@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GermanMedPath Marketing Tracker</title>
+  <meta name="description" content="Marketing activity tracker for GermanMedPath social media and outreach">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;box-sizing:border-box}
+    body{background:#0f0f11;color:#e4e4e7;font-family:Inter,system-ui,sans-serif;padding:32px 24px;min-height:100vh}
+    .container{max-width:900px;margin:0 auto}
+    h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+    .sub{color:#a1a1aa;font-size:0.9rem;margin-bottom:32px}
+    h2{font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#71717a;margin-bottom:16px;padding-top:24px;border-top:1px solid #27272a}
+    h3{font-size:0.85rem;font-weight:500;color:#d4d4d8;margin-bottom:8px}
+
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:32px}
+    .stat-card{background:#18181b;border:1px solid #27272a;border-radius:10px;padding:16px}
+    .stat-card .num{font-size:1.8rem;font-weight:700;color:#f4f4f5}
+    .stat-card .label{font-size:0.75rem;color:#71717a;margin-top:2px}
+
+    .section{margin-bottom:28px}
+    .card{background:#18181b;border:1px solid #27272a;border-radius:10px;padding:16px;margin-bottom:10px}
+    .card-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .card-info{flex:1}
+    .card-info .title{font-weight:500;font-size:0.9rem;color:#e4e4e7}
+    .card-info .desc{font-size:0.8rem;color:#71717a;margin-top:2px}
+    .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:500;white-space:nowrap}
+    .badge-done{background:#166534;color:#86efac}
+    .badge-pending{background:#713f12;color:#fde68a}
+    .badge-waiting{background:#1e3a5f;color:#93c5fd}
+    .badge-ready{background:#4a044e;color:#d8b4fe}
+    .badge-blocked{background:#450a0a;color:#fca5a5}
+    .btn-link{color:#818cf8;text-decoration:none;font-size:0.8rem}
+    .btn-link:hover{text-decoration:underline}
+
+    .checklist{list-style:none}
+    .checklist li{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:0.85rem;color:#a1a1aa}
+    .checklist li.done{color:#86efac}
+    .checklist li.done::before{content:'✓';font-weight:700;color:#22c55e;width:16px}
+    .checklist li::before{content:'○';color:#52525b;width:16px}
+
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+    .actions a{background:#27272a;color:#e4e4e7;padding:8px 16px;border-radius:8px;font-size:0.85rem;font-weight:500;text-decoration:none;border:1px solid #3f3f46;transition:background 0.15s}
+    .actions a:hover{background:#3f3f46}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marketing Activity Tracker</h1>
+    <p class="sub">GermanMedPath &mdash; Najm/GermanMedPath</p>
+
+    <div class="stats">
+      <div class="stat-card"><div class="num">5</div><div class="label">LinkedIn Posts Drafted</div></div>
+      <div class="stat-card"><div class="num">4</div><div class="label">Content Assets Created</div></div>
+      <div class="stat-card"><div class="num">10</div><div class="label">Cold Email Templates</div></div>
+      <div class="stat-card"><div class="num">0</div><div class="label">Posts Published</div></div>
+    </div>
+
+    <div class="section">
+      <h2>Reddit (u/Najm_GermanMedPath)</h2>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Account created &amp; verified</div>
+            <div class="desc">13 May 2026. Needs 24-48h before commenting is allowed.</div>
+          </div>
+          <span class="badge badge-waiting">Waiting</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Comment on non-EU residency thread</div>
+            <div class="desc">r/medicalschoolEU - typed value-first comment about Approbation</div>
+          </div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Comment on Netherlands vs Germany thread</div>
+            <div class="desc">r/medicalschoolEU - typed reply about specialty choice</div>
+          </div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Post original content (Approbation timeline)</div>
+            <div class="desc">After account is 3+ days old. Template ready.</div>
+          </div>
+          <span class="badge badge-blocked">Blocked</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Explore r/IMGreddit for threads</div>
+            <div class="desc">Community of 84k+ IMGs discussing residency options</div>
+          </div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>LinkedIn (Najm GermanMedPath)</h2>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Profile created</div>
+            <div class="desc">Medical Content Creator at GermanMedPath, Dubai. Avatar uploaded. Industry: Medical Education.</div>
+          </div>
+          <span class="badge badge-done">Done</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Post 1: IMG reality check</div>
+            <div class="desc">3 things nobody tells you about German residency. Drafted.</div>
+          </div>
+          <span class="badge badge-ready">Ready</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Post 2: Goethe B2 vs C1</div>
+            <div class="desc">What IMGs actually need for Approbation. Drafted.</div>
+          </div>
+          <span class="badge badge-ready">Ready</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Post 3: IMG-friendly specialties</div>
+            <div class="desc">Which fields are most accessible. Drafted.</div>
+          </div>
+          <span class="badge badge-ready">Ready</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Post 4: 6-month Approbation timeline</div>
+            <div class="desc">Realistic roadmap. Drafted.</div>
+          </div>
+          <span class="badge badge-ready">Ready</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Post 5: Germany vs US/UK</div>
+            <div class="desc">Comparison for IMGs deciding between countries. Drafted.</div>
+          </div>
+          <span class="badge badge-ready">Ready</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Build connections in IMG space</div>
+            <div class="desc">Connect with IMGs, medical recruiters, German hospital HR.</div>
+          </div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Cold Email Outreach (Dubai Clinics)</h2>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">10 email templates drafted</div>
+            <div class="desc">NMC, Valiant, Medcare, Zulekha, Saudi German, Iranian, King's College, Al Zahra, Dubai London, Aster. 500 AED for 3 posts.</div>
+          </div>
+          <span class="badge badge-ready">Ready</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-info">
+            <div class="title">Find marketing contact emails</div>
+            <div class="desc">Need to research actual email addresses/contact forms for each clinic.</div>
+          </div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Content Assets Created</h2>
+      <ul class="checklist">
+        <li class="done">5 LinkedIn post drafts</li>
+        <li class="done">10 cold email templates (Dubai clinics)</li>
+        <li class="done">Social bio / profile text (short, medium, long)</li>
+        <li class="done">Email welcome sequence (3 emails)</li>
+        <li class="done">Reddit response bank (20+ replies for common questions)</li>
+        <li class="done">6 Reddit post templates</li>
+        <li class="done">SEO: sitemap.xml, robots.txt, 404 page, Google Analytics on all 18 pages</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Next Actions (Prioritized)</h2>
+      <ul class="checklist">
+        <li>Post 1 LinkedIn post (IMG reality check)</li>
+        <li>Check if Reddit comments went through (14 May AM)</li>
+        <li>Post original content on Reddit (14 May PM, if account allows)</li>
+        <li>Find email contacts for 10 Dubai clinics</li>
+        <li>Connect with 20+ IMGs on LinkedIn</li>
+        <li>Push sitemap, robots.txt, 404, GA to GitHub Pages</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <a href="https://ko-fi.com/hossamhassan86778/shop" target="_blank">Ko-fi Shop</a>
+      <a href="https://hosxam.github.io/business-system/" target="_blank">GitHub Pages</a>
+      <a href="https://www.reddit.com/user/Najm_GermanMedPath/" target="_blank">Reddit Profile</a>
+      <a href="https://www.linkedin.com/in/najm-germanmedpath-9a3995409/" target="_blank">LinkedIn Profile</a>
+    </div>
+  </div>
+</body>
+</html>
