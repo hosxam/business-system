@@ -1,32 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PDF Tools - ToolKit Pro</title><meta name="description" content="Merge PDFs in your browser. Free, no upload needed.">
-<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;margin:0;padding:20px}.container{max-width:700px;margin:0 auto}a{color:#ff7043}.back{color:#888;text-decoration:none;display:block;margin-bottom:12px}h1{color:#fff;font-size:1.8rem}.dz{border:2px dashed #333;border-radius:12px;padding:60px 20px;text-align:center;margin:20px 0;cursor:pointer}.dz:hover{border-color:#ff7043}.dz p{color:#888}.btn{background:#ff7043;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;margin-top:12px}.btn:disabled{opacity:0.4;cursor:not-allowed}.st{color:#888;text-align:center;margin-top:16px;font-size:0.85rem}.kofi{text-align:center;margin-top:40px;color:#555;font-size:0.85rem}</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Merger — TOOLKIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;box-sizing:border-box}
+    :root{--bg:#fafaf8;--card:#f2f2ee;--ink:#141413;--ink-2:#6b6b63;--border:#d4d4cc;--accent:#d84c2c}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.5}
+    .top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:2px solid var(--ink)}
+    .top-bar .wordmark{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:-0.5px;text-transform:uppercase}
+    .top-bar .wordmark span{color:var(--accent)}
+    .top-bar a{color:var(--ink-2);text-decoration:none;font-size:0.8rem;font-weight:500}
+    .top-bar a:hover{color:var(--accent)}
+    .tool-area{max-width:640px;margin:40px auto;padding:0 28px}
+    .tool-header{margin-bottom:24px}
+    .tool-header .bread{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-2);margin-bottom:8px}
+    .tool-header .bread a{color:var(--ink-2);text-underline-offset:2px}
+    .tool-header h1{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-0.02em}
+    .tool-header p{font-size:0.85rem;color:var(--ink-2);margin-top:4px}
+    .card{background:var(--card);border:1px solid var(--border);padding:32px;margin-bottom:16px}
+    .field-group{margin-bottom:20px}
+    .field-group label{display:block;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+    .field-group input[type="file"]{width:100%;padding:8px 12px;border:1px solid var(--border);background:var(--bg);font-size:0.85rem}
+    .file-list{list-style:none;margin-top:8px}
+    .file-list li{padding:6px 0;font-size:0.82rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+    .btn{display:inline-block;padding:12px 28px;background:var(--ink);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:background 0.15s}
+    .btn:hover{background:var(--accent)}
+    .btn:disabled{opacity:0.4;cursor:not-allowed}
+    .btn-group{display:flex;gap:8px;margin-top:8px}
+    .progress-bar{margin-top:16px;display:none}
+    .progress-track{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+    .progress-fill{height:100%;background:var(--accent);width:0%;transition:width 0.3s}
+    .back-link{display:inline-block;margin-top:8px;font-size:0.75rem;color:var(--ink-2);text-underline-offset:2px}
+    footer{padding:28px;text-align:center;font-size:0.75rem;color:var(--ink-2);border-top:1px solid var(--border);margin-top:40px}
+  </style>
 </head>
-<body><div class="container">
-<a href="../index.html" class="back">← Back to ToolKit Pro</a>
-<h1>PDF Merger</h1>
-<p style="color:#888;">Select multiple PDF files and merge them into one document. All processing happens in your browser.</p>
-<div class="dz" id="dz"><p>Drop PDF files here or click to browse</p><p style="font-size:0.8rem;margin-top:8px;color:#555">Supports multiple PDFs</p></div>
-<input type="file" id="fi" accept=".pdf" multiple style="display:none">
-<button class="btn" id="mb" disabled>Merge PDFs</button>
-<div class="st" id="st">Select PDF files to begin</div>
-<div class="kofi">A <a href="https://ko-fi.com/hossamhassan86778">Ko-fi</a> supported tool</div>
+<body>
+<div class="top-bar">
+  <div class="wordmark"><span>//</span> TOOLKIT</div>
+  <a href="https://ko-fi.com/hossamhassan86778">support on ko-fi</a>
 </div>
+<div class="tool-area">
+  <div class="tool-header">
+    <div class="bread"><a href="../index.html">&larr; All Tools</a> / PDF Merger</div>
+    <h1>PDF Merger</h1>
+    <p>Combine multiple PDF files into one. All processing happens in your browser — nothing is uploaded.</p>
+  </div>
+  <div class="card">
+    <div class="field-group">
+      <label for="files">Select PDF Files</label>
+      <input type="file" id="files" accept="application/pdf" multiple>
+      <ul class="file-list" id="file-list"></ul>
+    </div>
+    <div class="btn-group">
+      <button class="btn" id="merge-btn" disabled>Merge PDFs</button>
+      <button class="btn" id="download-btn" style="background:transparent;color:var(--ink);border:1px solid var(--border)" disabled>Download Merged</button>
+    </div>
+    <div class="progress-bar" id="progress-bar">
+      <div style="font-size:0.75rem;color:var(--ink-2);margin-bottom:6px">Processing...</div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+  <a href="../index.html" class="back-link">&larr; Back to all tools</a>
+</div>
+<footer><p>TOOLKIT by Dr. Hossam Hassan</p></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-const dz=document.getElementById('dz'),fi=document.getElementById('fi'),mb=document.getElementById('mb'),st=document.getElementById('st');
-let files=[];
-dz.onclick=()=>fi.click();
-fi.onchange=()=>{files=Array.from(fi.files).filter(f=>f.type==='application/pdf');if(files.length>0){st.textContent=files.length+' PDF(s) selected';mb.disabled=false}else{st.textContent='No valid PDF files';mb.disabled=true}};
-mb.onclick=async()=>{
-  if(files.length<2){st.textContent='Please select at least 2 PDFs';return}
-  st.textContent='Merging...';mb.disabled=true;
-  try{
-    const {PDFDocument}=PDFLib;
-    const merged=await PDFDocument.create();
-    for(const f of files){const buf=await f.arrayBuffer();const doc=await PDFDocument.load(buf);const pages=await merged.copyPages(doc,doc.getPageIndices());pages.forEach(p=>merged.addPage(p))}
-    const mergedBytes=await merged.save();const blob=new Blob([mergedBytes],{type:'application/pdf'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='merged.pdf';a.click();st.textContent='Merged '+files.length+' PDFs!';mb.disabled=false
-  }catch(e){st.textContent='Error: '+e.message;mb.disabled=false}
-};
-</script></body></html>
+  let loadedFiles = [];
+  const input = document.getElementById('files');
+  const fileList = document.getElementById('file-list');
+  const mergeBtn = document.getElementById('merge-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const progressBar = document.getElementById('progress-bar');
+  const progressFill = document.getElementById('progress-fill');
+
+  input.addEventListener('change', () => {
+    loadedFiles = Array.from(input.files);
+    fileList.innerHTML = loadedFiles.map(f => '<li>' + f.name + ' <span style="color:var(--ink-2);font-size:0.75rem">' + (f.size / 1024).toFixed(0) + ' KB</span></li>').join('');
+    mergeBtn.disabled = loadedFiles.length < 2;
+  });
+
+  async function getCanvas(page) {
+    const viewport = page.getViewport({ scale: 1.5 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    return canvas;
+  }
+
+  mergeBtn.addEventListener('click', async () => {
+    if (loadedFiles.length < 2) return;
+    mergeBtn.disabled = true;
+    progressBar.style.display = 'block';
+
+    const canvases = [];
+    for (let i = 0; i < loadedFiles.length; i++) {
+      const buf = await loadedFiles[i].arrayBuffer();
+      const doc = await pdfjsLib.getDocument({ data: buf }).promise;
+      for (let p = 1; p <= doc.numPages; p++) {
+        const page = await doc.getPage(p);
+        const c = await getCanvas(page);
+        canvases.push(c);
+      }
+      progressFill.style.width = ((i + 1) / loadedFiles.length * 50) + '%';
+    }
+
+    const totalWidth = Math.max(...canvases.map(c => c.width));
+    const totalHeight = canvases.reduce((s, c) => s + c.height, 0);
+    const merged = document.createElement('canvas');
+    merged.width = totalWidth;
+    merged.height = totalHeight;
+    const ctx = merged.getContext('2d');
+    let y = 0;
+    for (let i = 0; i < canvases.length; i++) {
+      ctx.drawImage(canvases[i], 0, y);
+      y += canvases[i].height;
+      progressFill.style.width = (50 + ((i + 1) / canvases.length * 50)) + '%';
+    }
+
+    merged.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      downloadBtn.onclick = () => {
+        const a = document.createElement('a');
+        a.download = 'merged.pdf';
+        a.href = url;
+        a.click();
+      };
+      downloadBtn.disabled = false;
+      mergeBtn.disabled = false;
+      progressFill.style.width = '100%';
+      setTimeout(() => { progressBar.style.display = 'none'; progressFill.style.width = '0%'; }, 1500);
+    }, 'application/pdf');
+  });
+</script>
+</body>
+</html>

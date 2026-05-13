@@ -1,35 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>BMI & Health Calculator - ToolKit Pro</title><meta name="description" content="Free BMI, BMR, and ideal weight calculator.">
-<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;margin:0;padding:20px}.container{max-width:700px;margin:0 auto}a{color:#ff7043}.back{color:#888;text-decoration:none;display:block;margin-bottom:12px}h1{color:#fff;font-size:1.8rem}.card{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:24px;margin:16px 0}.card h2{color:#fff;font-size:1.1rem;margin-bottom:12px}label{color:#888;display:block;margin:8px 0 4px;font-size:0.9rem}input{width:100%;padding:10px 14px;border:1px solid #1a1a2e;border-radius:8px;background:#07070d;color:#fff;font-size:0.95rem;margin:4px 0}input:focus{outline:none;border-color:#ff7043}select{padding:10px 14px;border:1px solid #1a1a2e;border-radius:8px;background:#07070d;color:#fff;width:100%}.row{display:flex;gap:12px}.row>div{flex:1}.btn{background:#ff7043;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;margin-top:12px;width:100%}.rb{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:8px;padding:16px;margin-top:12px;text-align:center;display:none}.rb .big{font-size:2.2rem;font-weight:700;color:#ff7043}.rb .desc{color:#4caf50;font-weight:600;margin-top:6px}.kofi{text-align:center;margin-top:40px;color:#555;font-size:0.85rem}@media(max-width:600px){.row{flex-direction:column}}</style></head>
-<body><div class="container">
-<a href="../index.html" class="back">← Back to ToolKit Pro</a>
-<h1>BMI & Health Calculator</h1>
-<p style="color:#888;">Calculate your BMI, BMR, and ideal weight range.</p>
-<div class="card">
-  <h2>Body Mass Index (BMI)</h2>
-  <div class="row"><div><label>Weight (kg)</label><input type="number" id="bmiw" value="75"></div><div><label>Height (cm)</label><input type="number" id="bmih" value="175"></div></div>
-  <button class="btn" onclick="calcBMI()">Calculate</button>
-  <div class="rb" id="bmir"><div class="big" id="bmiv">22.9</div><div class="desc" id="bmic">Normal weight</div></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI & Health Calculator — TOOLKIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;box-sizing:border-box}
+    :root{--bg:#fafaf8;--card:#f2f2ee;--ink:#141413;--ink-2:#6b6b63;--border:#d4d4cc;--accent:#d84c2c;--green:#16a34a;--orange:#ea580c}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.5}
+    .top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:2px solid var(--ink)}
+    .top-bar .wordmark{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:-0.5px;text-transform:uppercase}
+    .top-bar .wordmark span{color:var(--accent)}
+    .top-bar a{color:var(--ink-2);text-decoration:none;font-size:0.8rem;font-weight:500}
+    .top-bar a:hover{color:var(--accent)}
+    .tool-area{max-width:640px;margin:40px auto;padding:0 28px}
+    .tool-header{margin-bottom:24px}
+    .tool-header .bread{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-2);margin-bottom:8px}
+    .tool-header .bread a{color:var(--ink-2);text-underline-offset:2px}
+    .tool-header h1{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-0.02em}
+    .tool-header p{font-size:0.85rem;color:var(--ink-2);margin-top:4px}
+    .card{background:var(--card);border:1px solid var(--border);padding:32px;margin-bottom:16px}
+    .field-group{margin-bottom:16px}
+    .field-group label{display:block;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+    .field-group input{width:100%;padding:10px 12px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none}
+    .field-group input:focus{border-color:var(--ink)}
+    .btn{display:inline-block;padding:12px 28px;background:var(--ink);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:background 0.15s}
+    .btn:hover{background:var(--accent)}
+    .results{margin-top:20px;display:none}
+    .results .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.9rem}
+    .results .stat:last-child{border:none}
+    .results .stat .v{font-weight:600}
+    .results .bmi-display{text-align:center;padding:20px;margin-bottom:16px;border:1px solid var(--border);background:var(--bg)}
+    .results .bmi-display .bmi-num{font-family:'Red Hat Display',sans-serif;font-size:3rem;font-weight:900;line-height:1}
+    .results .bmi-display .bmi-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-2);margin-top:4px}
+    .results .bmi-display .bmi-category{font-size:0.85rem;margin-top:6px;font-weight:600}
+    .back-link{display:inline-block;margin-top:8px;font-size:0.75rem;color:var(--ink-2);text-underline-offset:2px}
+    footer{padding:28px;text-align:center;font-size:0.75rem;color:var(--ink-2);border-top:1px solid var(--border);margin-top:40px}
+  </style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="wordmark"><span>//</span> TOOLKIT</div>
+  <a href="https://ko-fi.com/hossamhassan86778">support on ko-fi</a>
 </div>
-<div class="card">
-  <h2>Basal Metabolic Rate (BMR)</h2>
-  <div class="row"><div><label>Age</label><input type="number" id="bmrage" value="30"></div><div><label>Gender</label><select id="bmrg"><option value="male">Male</option><option value="female">Female</option></select></div></div>
-  <div class="row"><div><label>Weight (kg)</label><input type="number" id="bmrw" value="75"></div></div>
-  <button class="btn" onclick="calcBMR()">Calculate</button>
-  <div class="rb" id="bmrr"><div class="big" id="bmrv">1,685</div><div class="desc">Calories per day</div></div>
+<div class="tool-area">
+  <div class="tool-header">
+    <div class="bread"><a href="../index.html">&larr; All Tools</a> / Health Calculator</div>
+    <h1>BMI &amp; Health Calculator</h1>
+    <p>Calculate your BMI, BMR, and ideal weight range. Built for clinical and personal use.</p>
+  </div>
+  <div class="card">
+    <div class="field-group"><label for="weight">Weight (kg)</label><input type="number" id="weight" value="70" step="0.1" min="1"></div>
+    <div class="field-group"><label for="height">Height (cm)</label><input type="number" id="height" value="175" step="0.1" min="1"></div>
+    <div class="field-group"><label for="age">Age</label><input type="number" id="age" value="30" min="1" max="120"></div>
+    <div class="field-group"><label for="gender">Sex</label>
+      <select id="gender" style="width:100%;padding:10px 12px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none">
+        <option value="male">Male</option><option value="female">Female</option>
+      </select>
+    </div>
+    <button class="btn" id="calc-btn">Calculate</button>
+    <div class="results" id="results">
+      <div class="bmi-display">
+        <div class="bmi-num" id="bmi-num">22.9</div>
+        <div class="bmi-label">BMI</div>
+        <div class="bmi-category" id="bmi-cat">Normal weight</div>
+      </div>
+      <div class="stat"><span>BMR (Mifflin-St Jeor)</span><span class="v" id="bmr">0</span></div>
+      <div class="stat"><span>Ideal Weight Range (Devine)</span><span class="v" id="ideal">0</span></div>
+      <div class="stat"><span>BMI Category</span><span class="v" id="cat-detail">Normal</span></div>
+    </div>
+  </div>
+  <a href="../index.html" class="back-link">&larr; Back to all tools</a>
 </div>
-<div class="card">
-  <h2>Ideal Weight Range</h2>
-  <div class="row"><div><label>Height (cm)</label><input type="number" id="iw" value="175"></div></div>
-  <button class="btn" onclick="calcIW()">Calculate</button>
-  <div class="rb" id="iwr"><div class="big" id="iwv">66 - 80 kg</div></div>
-</div>
-<div class="kofi">A <a href="https://ko-fi.com/hossamhassan86778">Ko-fi</a> supported tool</div>
-</div>
+<footer><p>TOOLKIT by Dr. Hossam Hassan</p></footer>
 <script>
-function calcBMI(){const w=parseFloat(document.getElementById('bmiw').value),h=parseFloat(document.getElementById('bmih').value)/100;if(!w||!h)return;const b=w/(h*h);document.getElementById('bmiv').textContent=b.toFixed(1);document.getElementById('bmir').style.display='block';const c=document.getElementById('bmic');if(b<18.5)c.textContent='Underweight';else if(b<25)c.textContent='Normal weight';else if(b<30)c.textContent='Overweight';else if(b<35)c.textContent='Obese Class I';else if(b<40)c.textContent='Obese Class II';else c.textContent='Obese Class III'}
-function calcBMR(){const w=parseFloat(document.getElementById('bmrw').value),a=parseInt(document.getElementById('bmrage').value),g=document.getElementById('bmrg').value,h=175;if(!w||!a)return;const b=g==='male'?88.362+(13.397*w)+(4.799*h)-(5.677*a):447.593+(9.247*w)+(3.098*h)-(4.33*a);document.getElementById('bmrv').textContent=Math.round(b).toLocaleString();document.getElementById('bmrr').style.display='block'}
-function calcIW(){const h=parseFloat(document.getElementById('iw').value);if(!h)return;const m=h/100;document.getElementById('iwv').textContent=Math.round(18.5*m*m)+' - '+Math.round(25*m*m)+' kg';document.getElementById('iwr').style.display='block'}
-calcBMI();calcBMR();calcIW();
-</script></body></html>
+  document.getElementById('calc-btn').addEventListener('click', () => {
+    const w = parseFloat(document.getElementById('weight').value);
+    const h = parseFloat(document.getElementById('height').value);
+    const age = parseInt(document.getElementById('age').value);
+    const gender = document.getElementById('gender').value;
+    if (!w || !h || !age) return;
+
+    const bmi = w / ((h/100) * (h/100));
+    document.getElementById('bmi-num').textContent = bmi.toFixed(1);
+
+    let cat, catColor;
+    if (bmi < 18.5) { cat = 'Underweight'; catColor = 'var(--orange)'; }
+    else if (bmi < 25) { cat = 'Normal weight'; catColor = 'var(--green)'; }
+    else if (bmi < 30) { cat = 'Overweight'; catColor = 'var(--orange)'; }
+    else { cat = 'Obese'; catColor = 'var(--accent)'; }
+    document.getElementById('bmi-cat').textContent = cat;
+    document.getElementById('bmi-cat').style.color = catColor;
+    document.getElementById('cat-detail').textContent = cat;
+
+    const bmr = gender === 'male' ? 10*w + 6.25*h - 5*age + 5 : 10*w + 6.25*h - 5*age - 161;
+    document.getElementById('bmr').textContent = Math.round(bmr) + ' kcal/day';
+
+    const idealMale = 50 + 0.91*(h - 152.4);
+    const idealFemale = 45.5 + 0.91*(h - 152.4);
+    const ideal = gender === 'male' ? idealMale : idealFemale;
+    document.getElementById('ideal').textContent = ideal.toFixed(1) + ' kg (' + (ideal*2.205).toFixed(1) + ' lbs)';
+
+    document.getElementById('results').style.display = 'block';
+  });
+
+  document.getElementById('calc-btn').click();
+</script>
+</body>
+</html>

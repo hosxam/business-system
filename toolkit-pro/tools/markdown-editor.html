@@ -1,57 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Markdown Editor - ToolKit Pro</title><meta name="description" content="Free online Markdown editor with live preview and HTML export.">
-<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;margin:0;padding:20px;height:100vh;display:flex;flex-direction:column}.container{max-width:1100px;margin:0 auto;width:100%;flex:1;display:flex;flex-direction:column}a{color:#ff7043}.back{color:#888;text-decoration:none;font-size:0.9rem;display:block;margin-bottom:8px}h1{color:#fff;font-size:1.8rem;margin-bottom:4px}.ew{display:flex;gap:16px;flex:1;min-height:0}textarea{flex:1;background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:16px;color:#fff;font-size:0.95rem;font-family:monospace;resize:none}textarea:focus{outline:none;border-color:#ff7043}.pv{flex:1;background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:16px;overflow-y:auto;line-height:1.6}.pv h1,.pv h2,.pv h3{color:#fff;margin:12px 0 6px}.pv p{color:#ccc;margin:6px 0}.pv code{background:#1a1a2e;padding:2px 6px;border-radius:4px;color:#ff7043}.pv pre{background:#07070d;padding:16px;border-radius:8px;overflow-x:auto}.pv ul,.pv ol{padding-left:24px;color:#ccc}.pv blockquote{border-left:3px solid #ff7043;padding-left:16px;color:#888}.tb{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}.tbtn{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:6px;color:#888;padding:5px 10px;cursor:pointer;font-size:0.75rem}.tbtn:hover{border-color:#ff7043;color:#ff7043}.kofi{text-align:center;color:#555;font-size:0.8rem;padding:12px 0}@media(max-width:768px){.ew{flex-direction:column}}</style></head>
-<body><div class="container">
-<a href="../index.html" class="back">← Back to ToolKit Pro</a>
-<h1>Markdown Editor</h1>
-<div class="tb">
-  <button class="tbtn" onclick="w('**','**')">Bold</button>
-  <button class="tbtn" onclick="w('*','*')">Italic</button>
-  <button class="tbtn" onclick="w('[','](url)')">Link</button>
-  <button class="tbtn" onclick="w('``','``')">Code</button>
-  <button class="tbtn" onclick="ins('> ')">Quote</button>
-  <button class="tbtn" onclick="ins('# ')">H1</button>
-  <button class="tbtn" onclick="ins('## ')">H2</button>
-  <button class="tbtn" onclick="ins('- ')">List</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Editor — TOOLKIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;box-sizing:border-box}
+    :root{--bg:#fafaf8;--card:#f2f2ee;--ink:#141413;--ink-2:#6b6b63;--border:#d4d4cc;--accent:#d84c2c}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.5}
+    .top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:2px solid var(--ink)}
+    .top-bar .wordmark{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:-0.5px;text-transform:uppercase}
+    .top-bar .wordmark span{color:var(--accent)}
+    .top-bar a{color:var(--ink-2);text-decoration:none;font-size:0.8rem;font-weight:500}
+    .top-bar a:hover{color:var(--accent)}
+    .tool-area{max-width:900px;margin:40px auto;padding:0 28px}
+    .tool-header{margin-bottom:24px}
+    .tool-header .bread{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-2);margin-bottom:8px}
+    .tool-header .bread a{color:var(--ink-2);text-underline-offset:2px}
+    .tool-header h1{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-0.02em}
+    .tool-header p{font-size:0.85rem;color:var(--ink-2);margin-top:4px}
+    .editor-pane{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin-bottom:16px}
+    .editor-pane textarea{padding:16px;border:none;background:var(--card);font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink);resize:vertical;min-height:400px;outline:none;line-height:1.7;border-right:1px solid var(--border)}
+    .preview{padding:16px;background:var(--bg);min-height:400px;font-size:0.9rem;line-height:1.7;overflow-y:auto}
+    .preview h1,.preview h2,.preview h3{font-family:'Red Hat Display',sans-serif;font-weight:800;margin:12px 0 6px}
+    .preview h1{font-size:1.4rem}
+    .preview h2{font-size:1.15rem}
+    .preview h3{font-size:1rem}
+    .preview p{margin-bottom:8px}
+    .preview ul,.preview ol{padding-left:20px;margin-bottom:8px}
+    .preview code{background:var(--card);padding:1px 4px;font-family:'DM Mono',monospace;font-size:0.8rem}
+    .preview pre{background:var(--card);padding:12px;overflow-x:auto;margin-bottom:8px;font-size:0.8rem}
+    .preview blockquote{border-left:3px solid var(--accent);padding-left:12px;color:var(--ink-2);margin:8px 0}
+    .preview img{max-width:100%}
+    .preview a{color:var(--accent);text-underline-offset:2px}
+    .btn-group{display:flex;gap:8px;margin-bottom:20px}
+    .btn{padding:10px 20px;background:var(--ink);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:background 0.15s}
+    .btn:hover{background:var(--accent)}
+    .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--border)}
+    .btn-outline:hover{background:var(--ink);color:var(--bg)}
+    .back-link{display:inline-block;margin-top:8px;font-size:0.75rem;color:var(--ink-2);text-underline-offset:2px}
+    footer{padding:28px;text-align:center;font-size:0.75rem;color:var(--ink-2);border-top:1px solid var(--border);margin-top:40px}
+    @media(max-width:700px){.editor-pane{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="wordmark"><span>//</span> TOOLKIT</div>
+  <a href="https://ko-fi.com/hossamhassan86778">support on ko-fi</a>
 </div>
-<div class="ew">
-<textarea id="ed"># Welcome
+<div class="tool-area">
+  <div class="tool-header">
+    <div class="bread"><a href="../index.html">&larr; All Tools</a> / Markdown Editor</div>
+    <h1>Markdown Editor</h1>
+    <p>Write Markdown with live preview. Export as HTML when done.</p>
+  </div>
+  <div class="btn-group">
+    <button class="btn" id="export-btn">Export HTML</button>
+    <button class="btn btn-outline" id="clear-btn">Clear</button>
+  </div>
+  <div class="editor-pane">
+    <textarea id="md-input" placeholder="Write Markdown here..."># Hello
 
-Start writing **Markdown** here.
+This is **bold** and this is *italic*.
 
-Try headings, **bold**, *italic*, `code`, and more.
+## Features
+- Live preview
+- HTML export
+- Full Markdown support
 
-> Blockquote example
-
-- List item 1
-- List item 2</textarea>
-<div class="pv" id="pv"></div>
+> Blockquote with style</textarea>
+    <div class="preview" id="preview"></div>
+  </div>
+  <a href="../index.html" class="back-link">&larr; Back to all tools</a>
 </div>
-<div class="kofi">A <a href="https://ko-fi.com/hossamhassan86778">Ko-fi</a> supported tool</div>
-</div>
+<footer><p>TOOLKIT by Dr. Hossam Hassan</p></footer>
 <script>
-const ed=document.getElementById('ed'),pv=document.getElementById('pv');
-function render(){
-  let m=ed.value;
-  m=m.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  m=m.replace(/^### (.+)$/gm,'<h3>$1</h3>');
-  m=m.replace(/^## (.+)$/gm,'<h2>$1</h2>');
-  m=m.replace(/^# (.+)$/gm,'<h1>$1</h1>');
-  m=m.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  m=m.replace(/\*(.+?)\*/g,'<em>$1</em>');
-  m=m.replace(/\`\`\`(\w*)\n?([\s\S]*?)\`\`\`/g,'<pre><code>$2</code></pre>');
-  m=m.replace(/\`(.+?)\`/g,'<code>$1</code>');
-  m=m.replace(/!\[(.*?)\]\((.*?)\)/g,'<img src="$2" alt="$1" style="max-width:100%">');
-  m=m.replace(/\[(.+?)\]\((.*?)\)/g,'<a href="$2" style="color:#ff7043">$1</a>');
-  m=m.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
-  m=m.replace(/^- (.+)$/gm,'<li>$1</li>');
-  m=m.replace(/(<li>[\s\S]*?<\/li>)/g,'<ul>$1</ul>').replace(/<\/ul>\s*<ul>/g,'');
-  m=m.replace(/^(\d+)\. (.+)$/gm,'<li>$2</li>');
-  m=m.split('\n\n').map(p=>p.trim()?'<p>'+p+'</p>':'').join('');
-  pv.innerHTML=m;
-}
-ed.addEventListener('input',render);render();
-function w(b,e){const s=ed.selectionStart,en=ed.selectionEnd;const sel=ed.value.substring(s,en);ed.value=ed.value.substring(0,s)+b+sel+e+ed.value.substring(en);ed.focus();render()}
-function ins(t){const p=ed.selectionStart;ed.value=ed.value.substring(0,p)+t+ed.value.substring(ed.selectionEnd);ed.focus();render()}
-</script></body></html>
+  const input = document.getElementById('md-input');
+  const preview = document.getElementById('preview');
+  const exportBtn = document.getElementById('export-btn');
+  const clearBtn = document.getElementById('clear-btn');
+
+  function simpleMarkdown(md) {
+    let html = md
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/^###### (.+)$/gm, '<h6>$1</h6>')
+      .replace(/^##### (.+)$/gm, '<h5>$1</h5>')
+      .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`(.+?)`/g, '<code>$1</code>')
+      .replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1">')
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+      .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>\n?)+/g, m => '<ul>' + m.replace(/\n/g,'') + '</ul>');
+    html = html.replace(/\n\n/g, '</p><p>');
+    html = '<p>' + html + '</p>';
+    return html;
+  }
+
+  function render() { preview.innerHTML = simpleMarkdown(input.value); }
+  input.addEventListener('input', render);
+  render();
+
+  exportBtn.addEventListener('click', () => {
+    const full = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Markdown Export</title></head><body>' + preview.innerHTML + '</body></html>';
+    const blob = new Blob([full], {type:'text/html'});
+    const link = document.createElement('a');
+    link.download = 'export.html';
+    link.href = URL.createObjectURL(blob);
+    link.click();
+  });
+
+  clearBtn.addEventListener('click', () => { input.value = ''; render(); });
+</script>
+</body>
+</html>
