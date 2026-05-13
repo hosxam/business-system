@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Summarizer — TOOLKIT</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;box-sizing:border-box}
     :root{--bg:#fafaf8;--card:#f2f2ee;--ink:#141413;--ink-2:#6b6b63;--border:#d4d4cc;--accent:#d84c2c}
@@ -15,22 +15,25 @@
     .top-bar .wordmark span{color:var(--accent)}
     .top-bar a{color:var(--ink-2);text-decoration:none;font-size:0.8rem;font-weight:500}
     .top-bar a:hover{color:var(--accent)}
-    .tool-area{max-width:640px;margin:40px auto;padding:0 28px}
+    .tool-area{max-width:700px;margin:40px auto;padding:0 28px}
     .tool-header{margin-bottom:24px}
     .tool-header .bread{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-2);margin-bottom:8px}
     .tool-header .bread a{color:var(--ink-2);text-underline-offset:2px}
     .tool-header h1{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-0.02em}
     .tool-header p{font-size:0.85rem;color:var(--ink-2);margin-top:4px}
     .card{background:var(--card);border:1px solid var(--border);padding:32px;margin-bottom:16px}
-    .field-group{margin-bottom:20px}
+    .field-group{margin-bottom:16px}
     .field-group label{display:block;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
-    textarea{width:100%;padding:12px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);min-height:180px;resize:vertical;outline:none}
+    textarea{width:100%;padding:14px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);min-height:200px;resize:vertical;outline:none;line-height:1.7}
     textarea:focus{border-color:var(--ink)}
-    .field-group select{width:100%;padding:10px 12px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none}
-    .btn{display:inline-block;padding:12px 28px;background:var(--ink);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:background 0.15s}
+    .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+    .controls select{padding:10px 12px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.8rem;outline:none}
+    .btn{padding:10px 24px;background:var(--ink);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:background 0.15s}
     .btn:hover{background:var(--accent)}
-    .btn-group{display:flex;gap:8px;margin-top:8px}
-    .output-area{margin-top:20px;padding:20px;background:var(--bg);border:1px solid var(--border);font-size:0.9rem;line-height:1.7;min-height:60px;display:none}
+    .btn:disabled{opacity:0.4;cursor:not-allowed}
+    .word-count{font-size:0.75rem;color:var(--ink-2);margin-top:4px;font-family:'DM Mono',monospace}
+    .output-area{margin-top:16px;padding:20px;background:var(--bg);border:1px solid var(--border);line-height:1.8;font-size:0.9rem;display:none;max-height:400px;overflow-y:auto}
+    .output-area .summary-meta{font-size:0.7rem;color:var(--ink-2);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;font-family:'DM Mono',monospace}
     .back-link{display:inline-block;margin-top:8px;font-size:0.75rem;color:var(--ink-2);text-underline-offset:2px}
     footer{padding:28px;text-align:center;font-size:0.75rem;color:var(--ink-2);border-top:1px solid var(--border);margin-top:40px}
   </style>
@@ -44,45 +47,116 @@
   <div class="tool-header">
     <div class="bread"><a href="../index.html">&larr; All Tools</a> / Summarizer</div>
     <h1>Text Summarizer</h1>
-    <p>Paste long text and get a concise summary. Uses extraction-based summarization.</p>
+    <p>Extractive summarization using TF-IDF scoring. Picks the most informative sentences from your text.</p>
   </div>
   <div class="card">
-    <div class="field-group"><label for="text">Paste your text</label><textarea id="text" placeholder="Paste an article, document, or any long text here..."></textarea></div>
-    <div class="field-group"><label for="length">Summary length</label>
-      <select id="length"><option value="short">Short (1-2 sentences)</option><option value="medium" selected>Medium (3-5 sentences)</option><option value="long">Long (paragraph)</option></select>
+    <textarea id="text-input" placeholder="Paste a long article, research paper, or document here (at least 3-4 sentences recommended)..."></textarea>
+    <div class="word-count" id="word-count">0 words</div>
+    <div class="controls">
+      <select id="length-select">
+        <option value="0.2">Short (20%)</option>
+        <option value="0.35" selected>Medium (35%)</option>
+        <option value="0.5">Long (50%)</option>
+      </select>
+      <button class="btn" id="summarize-btn" disabled>Summarize</button>
+      <button class="btn" id="copy-btn" style="background:transparent;color:var(--ink);border:1px solid var(--border)" disabled>Copy</button>
     </div>
-    <div class="btn-group"><button class="btn" id="summarize-btn">Summarize</button></div>
     <div class="output-area" id="output"></div>
   </div>
   <a href="../index.html" class="back-link">&larr; Back to all tools</a>
 </div>
 <footer><p>TOOLKIT by Dr. Hossam Hassan</p></footer>
 <script>
-  const textEl = document.getElementById('text');
-  const lengthEl = document.getElementById('length');
-  const btn = document.getElementById('summarize-btn');
+  const textInput = document.getElementById('text-input');
+  const wordCount = document.getElementById('word-count');
+  const summarizeBtn = document.getElementById('summarize-btn');
+  const copyBtn = document.getElementById('copy-btn');
   const output = document.getElementById('output');
+  const lengthSelect = document.getElementById('length-select');
 
-  btn.addEventListener('click', () => {
-    const text = textEl.value.trim();
+  const STOP_WORDS = new Set([
+    'the','a','an','and','or','but','in','on','at','to','for','of','with','by','is','are','was','were',
+    'be','been','being','have','has','had','do','does','did','will','would','can','could','may','might',
+    'shall','should','it','its','this','that','these','those','i','you','he','she','we','they','my',
+    'your','his','her','our','their','me','him','us','them','not','no','so','if','as','from','about',
+    'into','through','during','before','after','above','below','between','out','off','over','under',
+    'again','further','then','once','here','there','when','where','why','how','all','each','every',
+    'both','few','more','most','other','some','such','only','own','same','than','too','very','just',
+    'also','up','down','because','until','while','which','who','whom','what','much','many'
+  ]);
+
+  textInput.addEventListener('input', () => {
+    const words = textInput.value.trim().split(/\s+/).filter(Boolean);
+    wordCount.textContent = words.length + ' words';
+    summarizeBtn.disabled = words.length < 30;
+  });
+
+  function getSentenceTokens(sentence) {
+    return sentence.toLowerCase().replace(/[^a-z0-9\s-]/g, '').split(/\s+/).filter(w => w && !STOP_WORDS.has(w));
+  }
+
+  summarizeBtn.addEventListener('click', () => {
+    const text = textInput.value.trim();
     if (!text) return;
-    const sentences = text.match(/[^.!?\n]+[.!?\n]+/g) || [text];
-    const words = text.split(/\s+/).filter(Boolean);
-    const wordFreq = {};
-    const stopWords = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','can','could','may','might','shall','should','it','its','this','that','these','those','i','you','he','she','we','they','my','your','his','her','our','their','me','him','us','them','not','no','so','if','as','from','about','into','through','during','before','after','above','below','between','out','off','over','under','again','further','then','once','here','there','when','where','why','how','all','each','every','both','few','more','most','other','some','such','only','own','same','than','too','very','just','also']);
-    words.forEach(w => { const c = w.toLowerCase().replace(/[^a-z]/g,''); if (c && !stopWords.has(c)) wordFreq[c] = (wordFreq[c]||0)+1; });
-    const scored = sentences.map(s => {
-      const sw = s.toLowerCase().split(/\s+/).filter(Boolean);
-      let score = 0;
-      sw.forEach(w => { const c = w.replace(/[^a-z]/g,''); if (wordFreq[c]) score += wordFreq[c]; });
-      return { sentence: s.trim(), score: score / (sw.length || 1) };
+
+    // Split into sentences (handles abbreviations poorly, good enough)
+    const rawSentences = text.match(/[^.!?\n]+[.!?\n]*/g) || [text];
+    if (rawSentences.length < 2) {
+      output.innerHTML = '<div class="summary-meta">Text too short for summarization</div><p>Try pasting a longer document (at least 3-4 sentences).</p>';
+      output.style.display = 'block';
+      return;
+    }
+
+    const sentences = rawSentences.map(s => s.trim()).filter(s => s.length > 10);
+
+    // Build TF-IDF scores
+    const numSentences = sentences.length;
+    const wordDocCount = {};
+    const sentenceTokens = sentences.map(s => {
+      const tokens = getSentenceTokens(s);
+      // Update document frequency
+      const uniqueTokens = new Set(tokens);
+      uniqueTokens.forEach(w => { wordDocCount[w] = (wordDocCount[w] || 0) + 1; });
+      return tokens;
     });
-    scored.sort((a,b) => b.score - a.score);
-    const count = lengthEl.value === 'short' ? 2 : lengthEl.value === 'medium' ? 4 : 7;
-    const top = scored.slice(0, Math.min(count, scored.length)).sort((a,b) => text.indexOf(a.sentence) - text.indexOf(b.sentence));
-    const summary = top.map(s => s.sentence).join(' ');
-    output.textContent = summary || 'Could not generate summary. Try a longer text.';
+
+    // Score each sentence
+    const scored = sentences.map((s, i) => {
+      const tokens = sentenceTokens[i];
+      let score = 0;
+      tokens.forEach(w => {
+        const tf = tokens.filter(t => t === w).length / tokens.length;
+        const idf = Math.log((numSentences + 1) / (wordDocCount[w] || 1) + 1);
+        score += tf * idf;
+      });
+      // Bonus for sentences with numbers (often contain data)
+      if (/\d+/.test(s)) score *= 1.1;
+      // Bonus for sentences at the beginning (topic intro)
+      if (i < 3) score *= 1.05;
+      return { text: s, score, idx: i };
+    });
+
+    // Sort by score descending, take top ratio, restore original order
+    const ratio = parseFloat(lengthSelect.value);
+    const topN = Math.max(2, Math.ceil(numSentences * ratio));
+    const topSentences = scored.sort((a, b) => b.score - a.score).slice(0, topN);
+    topSentences.sort((a, b) => a.idx - b.idx);
+
+    const summary = topSentences.map(s => s.text).join(' ');
+    const originalWords = text.split(/\s+/).length;
+    const summaryWords = summary.split(/\s+/).length;
+
+    output.innerHTML = '<div class="summary-meta">Summary: ' + summaryWords + ' words (' + Math.round(summaryWords/originalWords*100) + '% of original)</div><p>' + summary + '</p>';
     output.style.display = 'block';
+    copyBtn.disabled = false;
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const text = output.querySelector('p');
+    if (text) navigator.clipboard.writeText(text.textContent).then(() => {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+    });
   });
 </script>
 </body>

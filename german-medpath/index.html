@@ -8,267 +8,96 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
   <style>
-    /* ----- FOUNDATION ----- */
-    *, *::before, *::after { margin: 0; box-sizing: border-box; }
-    :root {
-      --bg: #f4efe9;
-      --paper: #ede6dc;
-      --ink: #1a1816;
-      --ink-light: #5c5650;
-      --accent: #c74232;
-      --accent-soft: rgba(199,66,50,0.08);
-      --border: #ddd5ca;
-      --grain: opacity(.04);
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-weight: 400;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-    /* hand-drawn grain overlay */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 10000;
-    }
+    *,*::before,*::after{margin:0;box-sizing:border-box}
+    :root{--bg:#f4efe9;--paper:#ede6dc;--ink:#1a1816;--ink-light:#5c5650;--accent:#c74232;--accent-soft:rgba(199,66,50,0.08);--border:#ddd5ca}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;position:relative}
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:10000}
+    h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:600;letter-spacing:-0.02em}
+    .label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;color:var(--accent)}
+    .small{font-size:0.85rem;color:var(--ink-light)}
+    .container{max-width:1040px;margin:0 auto;padding:0 28px}
 
-    /* ----- TYPOGRAPHY ----- */
-    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; letter-spacing: -0.02em; }
-    .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; color: var(--accent); }
-    .small { font-size: 0.85rem; color: var(--ink-light); }
+    .hero{min-height:80vh;display:flex;align-items:center;padding:120px 28px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+    .hero .container{width:100%}
+    .hero .tagline{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:4px 14px;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px;font-style:italic}
+    .hero h1{font-size:clamp(2.8rem,7vw,4.8rem);line-height:1.0;max-width:780px;margin-bottom:20px}
+    .hero h1 .accent{color:var(--accent);font-style:italic;font-weight:700}
+    .hero .lede{font-size:1.05rem;color:var(--ink-light);max-width:480px;line-height:1.8;margin-bottom:36px}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .hero .btn{display:inline-block;padding:14px 32px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:0.85rem;letter-spacing:0.02em;transition:all 0.25s;position:relative}
+    .hero .btn:hover{background:var(--accent);transform:translate(-2px,-2px)}
+    .hero .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+    .hero .btn-outline:hover{background:var(--ink);color:var(--bg)}
+    .hero .disclosure{font-size:0.75rem;color:var(--ink-light);margin-top:10px;font-style:italic}
 
-    /* ----- LAYOUT HELPERS ----- */
-    .container { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+    .marquee-band{padding:18px 0;border-bottom:1px solid var(--border);overflow:hidden;background:var(--paper)}
+    .marquee-band .track{display:flex;gap:56px;width:max-content;animation:scroll-mq 28s linear infinite}
+    .marquee-band .track span{font-size:0.8rem;white-space:nowrap;color:var(--ink-light);letter-spacing:0.02em}
+    .marquee-band .track span strong{font-weight:600;color:var(--ink)}
+    @keyframes scroll-mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* ----- HERO (editorial)----- */
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 28px 80px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero .container { width: 100%; }
-    .hero .tagline {
-      display: inline-block;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 4px 14px;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      font-style: italic;
-    }
-    .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 4.8rem);
-      line-height: 1.0;
-      max-width: 780px;
-      margin-bottom: 20px;
-    }
-    .hero h1 .accent { color: var(--accent); font-style: italic; font-weight: 700; }
-    .hero .lede {
-      font-size: 1.05rem;
-      color: var(--ink-light);
-      max-width: 480px;
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-    .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .hero .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      background: var(--ink);
-      color: var(--bg);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.02em;
-      transition: all 0.25s;
-      position: relative;
-    }
-    .hero .btn:hover { background: var(--accent); transform: translate(-2px, -2px); }
-    .hero .btn-outline {
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--ink);
-    }
-    .hero .btn-outline:hover { background: var(--ink); color: var(--bg); }
-    .hero .disclosure { font-size: 0.75rem; color: var(--ink-light); margin-top: 10px; font-style: italic; }
+    .phase-strip{padding:70px 0;border-bottom:1px solid var(--border)}
+    .phase-strip .intro{max-width:500px;margin-bottom:40px}
+    .phase-strip .intro h2{font-size:2rem;margin-bottom:10px}
+    .phase-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+    .phase-grid .cell{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 20px;transition:background 0.2s}
+    .phase-grid .cell:hover{background:var(--accent-soft)}
+    .phase-grid .cell .num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:8px}
+    .phase-grid .cell h3{font-size:0.95rem;margin-bottom:4px}
+    .phase-grid .cell p{font-size:0.78rem;color:var(--ink-light);line-height:1.6}
 
-    /* ----- MARQUEE (scrolling band) ----- */
-    .marquee-band {
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      background: var(--paper);
-    }
-    .marquee-band .track {
-      display: flex; gap: 56px; width: max-content;
-      animation: scroll-mq 28s linear infinite;
-    }
-    .marquee-band .track span { font-size: 0.8rem; white-space: nowrap; color: var(--ink-light); letter-spacing: 0.02em; }
-    .marquee-band .track span strong { font-weight: 600; color: var(--ink); }
-    @keyframes scroll-mq { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .products{padding:70px 0;border-bottom:1px solid var(--border)}
+    .products .intro{max-width:500px;margin-bottom:40px}
+    .products .intro h2{font-size:2rem;margin-bottom:10px}
+    .product-shelf{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--border)}
+    .product-card{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 24px;position:relative}
+    .product-card:last-child{border-right:none}
+    .product-card .badge{display:inline-block;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border:1px solid var(--ink);margin-bottom:12px;font-weight:600}
+    .product-card .badge-free{border-color:var(--accent);color:var(--accent)}
+    .product-card h3{font-size:1.15rem;margin-bottom:6px}
+    .product-card p{font-size:0.82rem;color:var(--ink-light);line-height:1.7;margin-bottom:16px}
+    .product-card .price{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;display:inline-block;margin-right:16px}
+    .product-card .price-free{color:var(--accent);font-size:1rem;font-style:italic}
+    .product-card .shop-link{color:var(--ink);font-size:0.8rem;text-underline-offset:3px;text-decoration-thickness:1px}
+    .product-card .shop-link:hover{color:var(--accent)}
 
-    /* ----- PHASE STRIP ----- */
-    .phase-strip { padding: 70px 0; border-bottom: 1px solid var(--border); }
-    .phase-strip .intro { max-width: 500px; margin-bottom: 40px; }
-    .phase-strip .intro h2 { font-size: 2rem; margin-bottom: 10px; }
-    .phase-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--ink);
-      border-left: 1px solid var(--ink);
-    }
-    .phase-grid .cell {
-      border-right: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
-      padding: 28px 20px;
-      transition: background 0.2s;
-    }
-    .phase-grid .cell:hover { background: var(--accent-soft); }
-    .phase-grid .cell .num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; }
-    .phase-grid .cell h3 { font-size: 0.95rem; margin-bottom: 4px; }
-    .phase-grid .cell p { font-size: 0.78rem; color: var(--ink-light); line-height: 1.6; }
+    .articles{padding:70px 0;border-bottom:1px solid var(--border)}
+    .articles .intro{max-width:600px;margin-bottom:40px}
+    .articles .intro h2{font-size:2rem;margin-bottom:10px}
+    .articles .intro p{color:var(--ink-light);margin-bottom:16px}
+    .article-list{display:grid}
+    .article-entry{text-decoration:none;color:var(--ink);display:flex;justify-content:space-between;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border);transition:all 0.2s;cursor:pointer}
+    .article-entry:last-child{border-bottom:none}
+    .article-entry:hover{padding-left:12px}
+    .article-entry h4{font-size:1rem;font-weight:600;margin-bottom:2px}
+    .article-entry p{font-size:0.82rem;color:var(--ink-light)}
+    .article-entry .arrow{color:var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-size:0.85rem}
 
-    /* ----- PRODUCTS (editorial grid) ----- */
-    .products { padding: 70px 0; border-bottom: 1px solid var(--border); }
-    .products .intro { max-width: 500px; margin-bottom: 40px; }
-    .products .intro h2 { font-size: 2rem; margin-bottom: 10px; }
-    .product-shelf {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid var(--border);
-    }
-    .product-card {
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 36px 24px;
-      position: relative;
-    }
-    .product-card:last-child { border-right: none; }
-    .product-card .badge {
-      display: inline-block;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border: 1px solid var(--ink);
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .product-card .badge-free { border-color: var(--accent); color: var(--accent); }
-    .product-card h3 { font-size: 1.15rem; margin-bottom: 6px; }
-    .product-card p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.7; margin-bottom: 16px; }
-    .product-card .price {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      display: inline-block;
-      margin-right: 16px;
-    }
-    .product-card .price-free { color: var(--accent); font-size: 1rem; font-style: italic; }
-    .product-card .shop-link {
-      color: var(--ink);
-      font-size: 0.8rem;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-    }
-    .product-card .shop-link:hover { color: var(--accent); }
+    .cta-band{padding:70px 28px;text-align:center;background:var(--paper);border-bottom:1px solid var(--border)}
+    .cta-band h2{font-size:2rem;margin-bottom:8px}
+    .cta-band p{color:var(--ink-light);max-width:460px;margin:0 auto 24px;font-size:0.95rem}
+    .cta-band .btn{display:inline-block;padding:14px 36px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:0.85rem;letter-spacing:0.02em;transition:all 0.25s}
+    .cta-band .btn:hover{background:var(--accent)}
+    .cta-band .small{font-size:0.8rem;color:var(--ink-light)}
 
-    /* ----- ARTICLES (list) ----- */
-    .articles { padding: 70px 0; border-bottom: 1px solid var(--border); }
-    .articles .intro { max-width: 500px; margin-bottom: 40px; }
-    .articles .intro h2 { font-size: 2rem; margin-bottom: 10px; }
-    .article-list { display: grid; }
-    .article-entry {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      cursor: default;
-    }
-    .article-entry:last-child { border-bottom: none; }
-    .article-entry h4 { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
-    .article-entry p { font-size: 0.82rem; color: var(--ink-light); }
-    .article-entry .arrow { color: var(--accent); font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; }
+    footer{padding:36px 28px;text-align:center;font-size:0.75rem;color:var(--ink-light);border-top:1px solid var(--border)}
+    footer a{color:var(--ink);text-underline-offset:2px}
 
-    /* ----- CTA BAND ----- */
-    .cta-band {
-      padding: 70px 28px;
-      text-align: center;
-      background: var(--paper);
-      border-bottom: 1px solid var(--border);
-    }
-    .cta-band h2 { font-size: 2rem; margin-bottom: 8px; }
-    .cta-band p { color: var(--ink-light); max-width: 460px; margin: 0 auto 24px; font-size: 0.95rem; }
-    .cta-band .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      background: var(--ink);
-      color: var(--bg);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.02em;
-      transition: all 0.25s;
-    }
-    .cta-band .btn:hover { background: var(--accent); }
+    .cursor-dot,.cursor-ring{position:fixed;pointer-events:none;z-index:10001;border-radius:50%;transform:translate(-50%,-50%)}
+    .cursor-dot{width:8px;height:8px;background:var(--accent);opacity:0.6;transition:width 0.15s,height 0.15s}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--ink);opacity:0.3;transition:width 0.2s,height 0.2s,border-color 0.2s;z-index:10000}
 
-    /* ----- FOOTER ----- */
-    footer {
-      padding: 36px 28px;
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--ink-light);
-      border-top: 1px solid var(--border);
+    @media(max-width:768px){
+      .phase-grid{grid-template-columns:1fr 1fr}
+      .product-shelf{grid-template-columns:1fr}
+      .product-card{border-right:none}
+      .hero h1{font-size:2rem}
     }
-    footer a { color: var(--ink); text-underline-offset: 2px; }
-
-    /* ----- RESPONSIVE ----- */
-    @media (max-width: 768px) {
-      .phase-grid { grid-template-columns: 1fr 1fr; }
-      .product-shelf { grid-template-columns: 1fr; }
-      .product-card { border-right: none; }
-      .hero h1 { font-size: 2rem; }
-    }
-    @media (max-width: 480px) {
-      .phase-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ----- CUSTOM CURSOR (awwwards) ----- */
-    @media (hover: hover) {
-      .cursor-dot {
-        position: fixed; pointer-events: none; z-index: 10001;
-        width: 8px; height: 8px; background: var(--accent);
-        border-radius: 50%; transform: translate(-50%,-50%);
-        transition: width 0.15s, height 0.15s, background 0.15s;
-        opacity: 0.6;
-      }
-      .cursor-ring {
-        position: fixed; pointer-events: none; z-index: 10000;
-        width: 34px; height: 34px; border: 1px solid var(--ink);
-        border-radius: 50%; transform: translate(-50%,-50%);
-        transition: width 0.2s, height 0.2s, border-color 0.2s;
-        opacity: 0.3;
-      }
-      a:hover ~ .cursor-ring,
-      button:hover ~ .cursor-ring,
-      .btn:hover ~ .cursor-ring { width: 50px; height: 50px; border-color: var(--accent); opacity: 0.6; }
-    }
+    @media(max-width:480px){.phase-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
-<!-- custom cursor -->
 <div class="cursor-dot" id="cd"></div>
 <div class="cursor-ring" id="cr"></div>
 
@@ -276,10 +105,10 @@
   <div class="container">
     <div class="tagline">Free &middot; For International Medical Graduates</div>
     <h1>Your German<br>Medical Career<br><span class="accent">Starts Here</span></h1>
-    <p class="lede">A complete, step-by-step system for international doctors pursuing the Approbation and Facharzt in Germany. Free roadmap, premium resources, and practical guidance.</p>
+    <p class="lede">A complete, step-by-step system for international doctors pursuing the Approbation and Facharzt in Germany. Five real articles, premium resources, and practical guidance from someone who has been through it.</p>
     <div class="actions">
       <a href="https://ko-fi.com/s/2de8b617f9" class="btn">Download the Free Roadmap</a>
-      <a href="#products" class="btn btn-outline">View Resources</a>
+      <a href="#articles" class="btn btn-outline">Read the Articles</a>
     </div>
     <div class="disclosure">Created by Dr. Hossam Hassan &mdash; built for doctors, by a doctor.</div>
   </div>
@@ -287,16 +116,16 @@
 
 <div class="marquee-band">
   <div class="track">
-    <span><strong>Approbation</strong> — Licensing walkthrough</span>
-    <span><strong>Goethe C1</strong> — Language exam strategy</span>
-    <span><strong>Facharzt</strong> — Specialty training paths</span>
-    <span><strong>Job Search</strong> — Finding your first hospital role</span>
-    <span><strong>Relocation</strong> — Visa, housing, insurance</span>
-    <span><strong>Approbation</strong> — Licensing walkthrough</span>
-    <span><strong>Goethe C1</strong> — Language exam strategy</span>
-    <span><strong>Facharzt</strong> — Specialty training paths</span>
-    <span><strong>Job Search</strong> — Finding your first hospital role</span>
-    <span><strong>Relocation</strong> — Visa, housing, insurance</span>
+    <span><strong>Approbation</strong> — 6-month timeline</span>
+    <span><strong>Goethe C1</strong> — What you actually need</span>
+    <span><strong>Facharzt</strong> — 10 specialty paths compared</span>
+    <span><strong>Best States</strong> — Processing times ranked</span>
+    <span><strong>AI Tools</strong> — Learn medical German faster</span>
+    <span><strong>Approbation</strong> — 6-month timeline</span>
+    <span><strong>Goethe C1</strong> — What you actually need</span>
+    <span><strong>Facharzt</strong> — 10 specialty paths compared</span>
+    <span><strong>Best States</strong> — Processing times ranked</span>
+    <span><strong>AI Tools</strong> — Learn medical German faster</span>
   </div>
 </div>
 
@@ -350,34 +179,34 @@
   </div>
 </section>
 
-<section class="articles">
+<section class="articles" id="articles">
   <div class="container">
     <div class="intro">
-      <div class="label">Reading</div>
-      <h2>Articles for the Journey</h2>
-      <p class="small">Practical, no-fluff advice for international doctors at every stage.</p>
+      <div class="label">Deep Reads</div>
+      <h2>Articles with Substance</h2>
+      <p>Five in-depth guides written by a doctor who has done the research. No fluff, no filler. Practical advice for every stage of the German medical journey.</p>
     </div>
     <div class="article-list">
-      <div class="article-entry">
-        <div><h4>How to Get Your Approbation in 6 Months</h4><p>A realistic month-by-month plan for international medical graduates.</p></div>
-        <span class="arrow">Read</span>
-      </div>
-      <div class="article-entry">
-        <div><h4>Goethe B2 vs C1: What You Actually Need</h4><p>State requirements, exam differences, and the fastest route to passing.</p></div>
-        <span class="arrow">Read</span>
-      </div>
-      <div class="article-entry">
-        <div><h4>The 5 Best German States for IMGs</h4><p>Processing times, language requirements, and job availability compared.</p></div>
-        <span class="arrow">Read</span>
-      </div>
-      <div class="article-entry">
-        <div><h4>Facharzt Options: What's in Demand</h4><p>Which specialties need doctors and how the German training system works.</p></div>
-        <span class="arrow">Read</span>
-      </div>
-      <div class="article-entry">
-        <div><h4>Using AI to Learn Medical German Faster</h4><p>Practical tools and techniques to accelerate your Fachsprach knowledge.</p></div>
-        <span class="arrow">Read</span>
-      </div>
+      <a href="articles/01-approbation-guide.md" class="article-entry" target="_self">
+        <div><h4>How to Get Your Approbation in 6 Months</h4><p>A realistic month-by-month plan for international medical graduates. What to do, when to start, and where most IMGs waste the most time.</p></div>
+        <span class="arrow">Read &rarr;</span>
+      </a>
+      <a href="articles/02-goethe-exam-tips.md" class="article-entry" target="_self">
+        <div><h4>Goethe B2 vs C1: What You Actually Need</h4><p>State-by-state language requirements, exam comparison, and the fastest path to passing. Includes the truth about the Fachsprachpr&uuml;fung.</p></div>
+        <span class="arrow">Read &rarr;</span>
+      </a>
+      <a href="articles/03-facharzt-pathways.md" class="article-entry" target="_self">
+        <div><h4>Facharzt Options: 10 Specialties Compared</h4><p>Which specialties are in demand, how much German you need, income potential, and which ones are most IMG-friendly.</p></div>
+        <span class="arrow">Read &rarr;</span>
+      </a>
+      <a href="articles/04-orthopedics-germany.md" class="article-entry" target="_self">
+        <div><h4>The 5 Best States for International Doctors</h4><p>Processing times, language requirements, salaries, and job availability compared. Plus strategies for each situation.</p></div>
+        <span class="arrow">Read &rarr;</span>
+      </a>
+      <a href="articles/05-ai-medical-german.md" class="article-entry" target="_self">
+        <div><h4>Using AI to Learn Medical German Faster</h4><p>Five practical AI techniques that actually work for Fachsprach preparation. Prompt templates included.</p></div>
+        <span class="arrow">Read &rarr;</span>
+      </a>
     </div>
   </div>
 </section>
@@ -385,8 +214,8 @@
 <section class="cta-band">
   <h2>Ready to Begin?</h2>
   <p>Download the free roadmap and start your German medical journey today. No signup, no strings.</p>
-  <a href="https://ko-fi.com/s/2de8b617f9" class="btn">Get the Free Roadmap</a><br>
-  <span class="small" style="display:inline-block;margin-top:8px">Or <a href="https://ko-fi.com/hossamhassan86778/shop" style="color:var(--ink)">browse all resources</a></span>
+  <a href="https://ko-fi.com/s/2de8b617f9" class="btn">Get the Free Roadmap</a>
+  <p class="small" style="margin-top:8px">Or <a href="https://ko-fi.com/hossamhassan86778/shop" style="color:var(--ink)">browse all premium resources</a></p>
 </section>
 
 <footer>
@@ -395,19 +224,11 @@
 </footer>
 
 <script>
-  // custom cursor
-  const dot = document.getElementById('cd');
-  const ring = document.getElementById('cr');
-  if (window.matchMedia('(hover: hover)').matches) {
-    let mx = 0, my = 0, dx = 0, dy = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function loop() {
-      dx += (mx - dx) * 0.12; dy += (my - dy) * 0.12;
-      dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
-      ring.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
-      requestAnimationFrame(loop);
-    }
-    loop();
+  const dot=document.getElementById('cd'),ring=document.getElementById('cr');
+  if(window.matchMedia('(hover: hover)').matches){
+    let mx=0,my=0,dx=0,dy=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+    (function loop(){dx+=(mx-dx)*0.12;dy+=(my-dy)*0.12;dot.style.transform='translate('+mx+'px,'+my+'px)';ring.style.transform='translate('+dx+'px,'+dy+'px)';requestAnimationFrame(loop)})();
   }
 </script>
 </body>

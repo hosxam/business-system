@@ -21,25 +21,30 @@
     .tool-header .bread a{color:var(--ink-2);text-underline-offset:2px}
     .tool-header h1{font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-0.02em}
     .tool-header p{font-size:0.85rem;color:var(--ink-2);margin-top:4px}
-    .editor-pane{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin-bottom:16px}
-    .editor-pane textarea{padding:16px;border:none;background:var(--card);font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink);resize:vertical;min-height:400px;outline:none;line-height:1.7;border-right:1px solid var(--border)}
-    .preview{padding:16px;background:var(--bg);min-height:400px;font-size:0.9rem;line-height:1.7;overflow-y:auto}
-    .preview h1,.preview h2,.preview h3{font-family:'Red Hat Display',sans-serif;font-weight:800;margin:12px 0 6px}
-    .preview h1{font-size:1.4rem}
-    .preview h2{font-size:1.15rem}
-    .preview h3{font-size:1rem}
-    .preview p{margin-bottom:8px}
-    .preview ul,.preview ol{padding-left:20px;margin-bottom:8px}
-    .preview code{background:var(--card);padding:1px 4px;font-family:'DM Mono',monospace;font-size:0.8rem}
-    .preview pre{background:var(--card);padding:12px;overflow-x:auto;margin-bottom:8px;font-size:0.8rem}
-    .preview blockquote{border-left:3px solid var(--accent);padding-left:12px;color:var(--ink-2);margin:8px 0}
-    .preview img{max-width:100%}
-    .preview a{color:var(--accent);text-underline-offset:2px}
-    .btn-group{display:flex;gap:8px;margin-bottom:20px}
+    .btn-group{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
     .btn{padding:10px 20px;background:var(--ink);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:background 0.15s}
     .btn:hover{background:var(--accent)}
     .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--border)}
     .btn-outline:hover{background:var(--ink);color:var(--bg)}
+    .editor-pane{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin-bottom:16px}
+    .editor-pane textarea{padding:16px;border:none;background:var(--card);font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink);resize:vertical;min-height:450px;outline:none;line-height:1.7;border-right:1px solid var(--border)}
+    .preview{padding:16px;background:var(--bg);min-height:450px;font-size:0.9rem;line-height:1.7;overflow:auto}
+    .preview h1{font-size:1.6rem;font-weight:800;margin:16px 0 8px}
+    .preview h2{font-size:1.3rem;font-weight:700;margin:14px 0 6px}
+    .preview h3{font-size:1.1rem;font-weight:700;margin:10px 0 4px}
+    .preview p{margin-bottom:10px;color:var(--ink-2)}
+    .preview ul,.preview ol{padding-left:24px;margin-bottom:10px}
+    .preview li{margin-bottom:2px}
+    .preview code{background:var(--card);padding:2px 5px;font-family:'DM Mono',monospace;font-size:0.8rem;border-radius:3px}
+    .preview pre{background:var(--card);padding:14px;overflow-x:auto;margin-bottom:12px;border:1px solid var(--border);font-size:0.8rem;line-height:1.5}
+    .preview pre code{padding:0;background:none}
+    .preview blockquote{border-left:3px solid var(--accent);padding:8px 14px;margin:12px 0;background:var(--card);color:var(--ink-2);font-style:italic}
+    .preview table{width:100%;border-collapse:collapse;margin:12px 0}
+    .preview th,.preview td{border:1px solid var(--border);padding:8px 10px;text-align:left;font-size:0.85rem}
+    .preview th{background:var(--card);font-weight:600}
+    .preview img{max-width:100%}
+    .preview a{color:var(--accent)}
+    .preview hr{margin:16px 0;border:none;border-top:1px solid var(--border)}
     .back-link{display:inline-block;margin-top:8px;font-size:0.75rem;color:var(--ink-2);text-underline-offset:2px}
     footer{padding:28px;text-align:center;font-size:0.75rem;color:var(--ink-2);border-top:1px solid var(--border);margin-top:40px}
     @media(max-width:700px){.editor-pane{grid-template-columns:1fr}}
@@ -54,71 +59,72 @@
   <div class="tool-header">
     <div class="bread"><a href="../index.html">&larr; All Tools</a> / Markdown Editor</div>
     <h1>Markdown Editor</h1>
-    <p>Write Markdown with live preview. Export as HTML when done.</p>
+    <p>Write with live preview powered by <strong>marked.js</strong>. Export as HTML.</p>
   </div>
   <div class="btn-group">
     <button class="btn" id="export-btn">Export HTML</button>
+    <button class="btn" id="copy-btn" class="btn-outline">Copy HTML</button>
     <button class="btn btn-outline" id="clear-btn">Clear</button>
   </div>
   <div class="editor-pane">
-    <textarea id="md-input" placeholder="Write Markdown here..."># Hello
+    <textarea id="md-input" placeholder="Write Markdown here..." spellcheck="true"># Hello
 
 This is **bold** and this is *italic*.
 
 ## Features
+- Powered by **marked.js** (real parser, not regex)
+- Tables, code blocks, blockquotes
+- HTML export with full tags
 - Live preview
-- HTML export
-- Full Markdown support
 
-> Blockquote with style</textarea>
+| Feature | Status |
+|---------|--------|
+| Tables | Yes |
+| Code blocks | Yes |
+| Lists | Yes |
+
+> Blockquote with style
+
+\`\`\`javascript
+console.log("real syntax highlighting");
+\`\`\`
+
+Check out [marked.js](https://marked.js.org/)</textarea>
     <div class="preview" id="preview"></div>
   </div>
   <a href="../index.html" class="back-link">&larr; Back to all tools</a>
 </div>
 <footer><p>TOOLKIT by Dr. Hossam Hassan</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
   const input = document.getElementById('md-input');
   const preview = document.getElementById('preview');
-  const exportBtn = document.getElementById('export-btn');
-  const clearBtn = document.getElementById('clear-btn');
 
-  function simpleMarkdown(md) {
-    let html = md
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/^###### (.+)$/gm, '<h6>$1</h6>')
-      .replace(/^##### (.+)$/gm, '<h5>$1</h5>')
-      .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
-      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/`(.+?)`/g, '<code>$1</code>')
-      .replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1">')
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-      .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
-      .replace(/^- (.+)$/gm, '<li>$1</li>')
-      .replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-    html = html.replace(/(<li>.*<\/li>\n?)+/g, m => '<ul>' + m.replace(/\n/g,'') + '</ul>');
-    html = html.replace(/\n\n/g, '</p><p>');
-    html = '<p>' + html + '</p>';
-    return html;
+  // Configure marked
+  marked.setOptions({ breaks: true, gfm: true });
+
+  function render() {
+    preview.innerHTML = marked.parse(input.value);
   }
-
-  function render() { preview.innerHTML = simpleMarkdown(input.value); }
   input.addEventListener('input', render);
   render();
 
-  exportBtn.addEventListener('click', () => {
-    const full = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Markdown Export</title></head><body>' + preview.innerHTML + '</body></html>';
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const full = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Markdown Export</title><style>body{font-family:sans-serif;line-height:1.6;max-width:720px;margin:40px auto;padding:0 20px}code{background:#f4f4f4;padding:2px 4px}pre{background:#f4f4f4;padding:12px;overflow:auto}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:6px 10px}blockquote{border-left:3px solid #ccc;padding-left:12px;color:#666}</style></head><body>' + preview.innerHTML + '</body></html>';
     const blob = new Blob([full], {type:'text/html'});
-    const link = document.createElement('a');
-    link.download = 'export.html';
-    link.href = URL.createObjectURL(blob);
-    link.click();
+    const a = document.createElement('a');
+    a.download = 'export.html'; a.href = URL.createObjectURL(blob); a.click();
   });
 
-  clearBtn.addEventListener('click', () => { input.value = ''; render(); });
+  document.getElementById('copy-btn').addEventListener('click', () => {
+    navigator.clipboard.writeText(preview.innerHTML).then(() => {
+      document.getElementById('copy-btn').textContent = 'Copied!';
+      setTimeout(() => { document.getElementById('copy-btn').textContent = 'Copy HTML'; }, 1500);
+    });
+  });
+
+  document.getElementById('clear-btn').addEventListener('click', () => { input.value = ''; render(); });
 </script>
 </body>
 </html>
