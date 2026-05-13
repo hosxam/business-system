@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PDF Tools - ToolKit Pro</title><meta name="description" content="Merge PDFs in your browser. Free, no upload needed.">
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;margin:0;padding:20px}.container{max-width:700px;margin:0 auto}a{color:#ff7043}.back{color:#888;text-decoration:none;display:block;margin-bottom:12px}h1{color:#fff;font-size:1.8rem}.dz{border:2px dashed #333;border-radius:12px;padding:60px 20px;text-align:center;margin:20px 0;cursor:pointer}.dz:hover{border-color:#ff7043}.dz p{color:#888}.btn{background:#ff7043;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;margin-top:12px}.btn:disabled{opacity:0.4;cursor:not-allowed}.st{color:#888;text-align:center;margin-top:16px;font-size:0.85rem}.kofi{text-align:center;margin-top:40px;color:#555;font-size:0.85rem}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body><div class="container">
+<a href="../index.html" class="back">← Back to ToolKit Pro</a>
+<h1>PDF Merger</h1>
+<p style="color:#888;">Select multiple PDF files and merge them into one document. All processing happens in your browser.</p>
+<div class="dz" id="dz"><p>Drop PDF files here or click to browse</p><p style="font-size:0.8rem;margin-top:8px;color:#555">Supports multiple PDFs</p></div>
+<input type="file" id="fi" accept=".pdf" multiple style="display:none">
+<button class="btn" id="mb" disabled>Merge PDFs</button>
+<div class="st" id="st">Select PDF files to begin</div>
+<div class="kofi">A <a href="https://ko-fi.com/hossamhassan86778">Ko-fi</a> supported tool</div>
+</div>
+<script>
+const dz=document.getElementById('dz'),fi=document.getElementById('fi'),mb=document.getElementById('mb'),st=document.getElementById('st');
+let files=[];
+dz.onclick=()=>fi.click();
+fi.onchange=()=>{files=Array.from(fi.files).filter(f=>f.type==='application/pdf');if(files.length>0){st.textContent=files.length+' PDF(s) selected';mb.disabled=false}else{st.textContent='No valid PDF files';mb.disabled=true}};
+mb.onclick=async()=>{
+  if(files.length<2){st.textContent='Please select at least 2 PDFs';return}
+  st.textContent='Merging...';mb.disabled=true;
+  try{
+    const {PDFDocument}=PDFLib;
+    const merged=await PDFDocument.create();
+    for(const f of files){const buf=await f.arrayBuffer();const doc=await PDFDocument.load(buf);const pages=await merged.copyPages(doc,doc.getPageIndices());pages.forEach(p=>merged.addPage(p))}
+    const mergedBytes=await merged.save();const blob=new Blob([mergedBytes],{type:'application/pdf'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='merged.pdf';a.click();st.textContent='Merged '+files.length+' PDFs!';mb.disabled=false
+  }catch(e){st.textContent='Error: '+e.message;mb.disabled=false}
+};
+</script></body></html>

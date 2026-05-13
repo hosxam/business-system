@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Najm Dashboard - Hossam's Business System</title>
+  <meta name="description" content="Unified dashboard tracking all income streams, content, and tools.">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0}
+    .container{max-width:1000px;margin:0 auto;padding:0 20px}
+    header{background:#0d0d1a;border-bottom:1px solid #1a1a2e;padding:16px 0}
+    .hi{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:1.4rem;font-weight:700;color:#fff}.logo span{color:#4fc3f7}
+    .update{color:#555;font-size:0.75rem}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 0}
+    .sc{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:10px;padding:16px;text-align:center}
+    .sc .num{font-size:1.6rem;font-weight:700;color:#4fc3f7}
+    .sc .label{color:#666;font-size:0.75rem;margin-top:4px}
+    .streams{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:10px 0 30px}
+    .card{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:20px}
+    .ch{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+    .ct{font-weight:600;color:#fff;font-size:1rem}
+    .status{padding:2px 10px;border-radius:20px;font-size:0.7rem;font-weight:600}
+    .s-read{background:#1a3a1a;color:#4caf50}
+    .s-need{background:#3a2a1a;color:#ff9800}
+    .cd{color:#888;font-size:0.8rem;line-height:1.5}
+    .cm{display:flex;gap:16px;margin-top:10px;padding-top:10px;border-top:1px solid #1a1a2e}
+    .cm div{text-align:center}
+    .cm .v{font-weight:600;color:#fff}
+    .cm .l{color:#555;font-size:0.7rem}
+    .ca{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+    .ca a{padding:5px 12px;border-radius:6px;font-size:0.75rem;border:1px solid #1a1a2e;background:transparent;color:#888;text-decoration:none;transition:all 0.2s}
+    .ca a:hover{border-color:#4fc3f7;color:#4fc3f7}
+    .setup{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:10px;padding:20px;margin-bottom:30px}
+    .si{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a1a2e;font-size:0.85rem}
+    .si:last-child{border:none}
+    .si .name{color:#ccc}
+    .si .done{color:#4caf50}
+    .si .pending{color:#ff9800}
+    h2{font-size:1.2rem;font-weight:600;color:#fff;margin:16px 0 10px}
+    footer{text-align:center;padding:24px 0;color:#444;font-size:0.8rem;border-top:1px solid #1a1a2e}
+    @media(max-width:768px){.stats{grid-template-columns:1fr 1fr}.streams{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header><div class="container hi"><div class="logo">Najm <span>Dashboard</span></div><div class="update">May 13, 2026</div></div></header>
+<div class="container">
+  <div class="stats">
+    <div class="sc"><div class="num">2</div><div class="label">Income Streams</div></div>
+    <div class="sc"><div class="num">25</div><div class="label">Total Files</div></div>
+    <div class="sc"><div class="num">0</div><div class="label">Revenue</div></div>
+    <div class="sc"><div class="num">1</div><div class="label">Account Setup</div></div>
+  </div>
+
+  <h2>Income Streams</h2>
+  <div class="streams">
+    <div class="card">
+      <div class="ch"><span class="ct">GermanMedPath</span><span class="status s-read">Live on Ko-fi</span></div>
+      <div class="cd">Digital resources for international doctors pursuing German medical careers. Products include interview prep guide, Approbation checklist, and flashcards. Free lead magnet to build email list.</div>
+      <div class="cm"><div><div class="v">3</div><div class="l">Products</div></div><div><div class="v">5</div><div class="l">Articles</div></div><div><div class="v">1</div><div class="l">Free Guide</div></div></div>
+      <div class="ca">
+        <a href="../german-medpath/index.html">Landing Page</a>
+        <a href="https://ko-fi.com/s/08941e2c4e">Interview Prep</a>
+        <a href="https://ko-fi.com/s/5dc370fa64">Checklist</a>
+        <a href="https://ko-fi.com/s/bc87ccedd0">Flashcards</a>
+        <a href="https://ko-fi.com/s/2de8b617f9">Free Roadmap</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">ToolKit Pro</span><span class="status s-read">Live</span></div>
+      <div class="cd">6 free browser-based tools: QR code generator, image resizer, text summarizer, Markdown editor, BMI calculator, PDF merger. Drives traffic to Ko-fi via footer links.</div>
+      <div class="cm"><div><div class="v">6</div><div class="l">Tools</div></div><div><div class="v">0</div><div class="l">Users</div></div></div>
+      <div class="ca">
+        <a href="../toolkit-pro/index.html">Tool Hub</a>
+        <a href="../toolkit-pro/tools/qr-generator.html">QR Tool</a>
+        <a href="../toolkit-pro/tools/image-resizer.html">Resizer</a>
+        <a href="../toolkit-pro/tools/markdown-editor.html">Markdown</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>Setup Checklist</h2>
+  <div class="setup">
+    <div class="si"><span class="name">1. Ko-fi account</span><span class="done">Done</span></div>
+    <div class="si"><span class="name">2. Upload 4 products to Ko-fi shop</span><span class="done">Done</span></div>
+    <div class="si"><span class="name">3. Upload free lead magnet to Ko-fi (free download)</span><span class="done">Done</span></div>
+    <div class="si"><span class="name">4. Share Ko-fi links with Najm</span><span class="done">Done</span></div>
+    <div class="si"><span class="name">5. Create 2 commission listings on Ko-fi</span><span class="pending">Create to Ko-fi shop (I give you files)</span><span class="pending">Upload files</span></div>
+    <div class="si"><span class="name">3. Upload free lead magnet to Ko-fi (free download)</span><span class="pending">Upload file</span></div>
+    <div class="si"><span class="name">4. Create 2 Tool commissions on Ko-fi (web dev + automation)</span><span class="pending">Create 2 min</span></div>
+    <div class="si"><span class="name">5. Give me your Ko-fi shop links to add to landing pages</span><span class="pending">Share links</span></div>
+    <div class="si"><span class="name">6. I deploy all pages to GitHub Pages</span><span class="pending">Need GitHub token</span></div>
+    <div class="si"><span class="name">7. System goes live. I handle content. You check dashboard.</span><span class="pending">Najm handles</span></div>
+  </div>
+
+  <h2>What You Do vs What I Do</h2>
+  <div class="setup">
+    <div class="si"><span class="name">You: Upload product files to Ko-fi shop</span><span class="pending">10 min once</span></div>
+    <div class="si"><span class="name">You: Create 2 commission listings on Ko-fi</span><span class="pending">5 min once</span></div>
+    <div class="si"><span class="name">You: Share Ko-fi links + GitHub token</span><span class="pending">2 min once</span></div>
+    <div class="si"><span class="name">Najm: Everything else, forever</span><span class="done">Running</span></div>
+  </div>
+</div>
+<footer>Built by Najm. Powered by Ko-fi & GitHub Pages.</footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Text Summarizer - ToolKit Pro</title><meta name="description" content="Free online text summarizer. Summarize articles and documents in seconds.">
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;margin:0;padding:20px}.container{max-width:700px;margin:0 auto}a{color:#ff7043}.back{color:#888;text-decoration:none;display:block;margin-bottom:12px}h1{color:#fff;font-size:1.8rem}textarea{width:100%;min-height:250px;background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:16px;color:#fff;font-size:0.95rem;font-family:inherit;resize:vertical;margin:16px 0}textarea:focus{outline:none;border-color:#ff7043}select{padding:8px 12px;border:1px solid #1a1a2e;border-radius:6px;background:#07070d;color:#fff;margin:8px 0}.btn{background:#ff7043;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer;margin-top:8px}.result{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:20px;margin-top:20px;display:none;white-space:pre-wrap;line-height:1.6}.kofi{text-align:center;margin-top:40px;color:#555;font-size:0.85rem}</style></head>
+<body><div class="container">
+<a href="../index.html" class="back">← Back to ToolKit Pro</a>
+<h1>Text Summarizer</h1>
+<p style="color:#888;">Paste any text or article and get a concise summary.</p>
+<textarea id="input" placeholder="Paste your text here..."></textarea>
+<select id="len"><option value="short">Short (1-2 sentences)</option><option value="medium" selected>Medium (paragraph)</option><option value="long">Long (3-4 paragraphs)</option></select>
+<button class="btn" id="go">Summarize</button>
+<div class="result" id="result"><h3 style="color:#fff;margin-bottom:8px">Summary</h3><div id="output"></div></div>
+<div style="color:#888;text-align:center;margin-top:16px;font-size:0.85rem" id="st">Enter text and click Summarize</div>
+<div class="kofi">Helpful? <a href="https://ko-fi.com/hossamhassan86778/shop">Support on Ko-fi</a></div>
+</div>
+<script>
+const inp=document.getElementById('input'),len=document.getElementById('len'),btn=document.getElementById('go'),res=document.getElementById('result'),out=document.getElementById('output'),st=document.getElementById('st');
+btn.onclick=()=>{
+  const t=inp.value.trim();if(!t||t.length<50){st.textContent='Please enter at least 50 characters';return}
+  const s=t.match(/[^.!?]+[.!?]+/g)||[t];const ratios={short:0.1,medium:0.25,long:0.4};const count=Math.max(1,Math.floor(s.length*ratios[len.value]||0.25));
+  out.textContent=s.slice(0,count).join(' ');res.style.display='block';st.textContent='Summarized from '+t.length+' to '+out.textContent.length+' characters';
+};
+</script></body></html>
