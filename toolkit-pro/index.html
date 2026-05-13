@@ -3,85 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToolKit Pro - Free Online Tools by Dr. Hossam</title>
-  <meta name="description" content="Free browser-based tools: QR code generator, image resizer, text summarizer, and more. Support the work on Ko-fi.">
+  <title>ToolKit Pro — Free Browser Tools</title>
+  <meta name="description" content="6 free browser-based tools: QR code generator, image resizer, text summarizer, Markdown editor, BMI calculator, PDF merger. No uploads, no servers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121c;
+      --border: #1e1e2e;
+      --accent: #f97316;
+      --accent-dim: rgba(249,115,22,0.12);
+      --text: #f1f5f9;
+      --muted: #6b7280;
+    }
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0}
-    .container{max-width:1000px;margin:0 auto;padding:0 20px}
-    header{padding:16px 0;border-bottom:1px solid #1a1a2e;display:flex;justify-content:space-between;align-items:center}
-    .logo{font-size:1.3rem;font-weight:700;color:#fff}.logo span{color:#ff7043}
-    header a{color:#999;text-decoration:none;margin-left:16px;font-size:0.9rem}
-    .hero{text-align:center;padding:60px 0 30px}
-    .hero h1{font-size:2.5rem;color:#fff;margin-bottom:10px}
-    .hero p{color:#888}
-    .hero .kofi-link{color:#ff7043;text-decoration:none;font-weight:600}
-    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:20px 0 50px}
-    .tool-card{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:24px;text-align:center;text-decoration:none;color:inherit;transition:border-color .2s}
-    .tool-card:hover{border-color:#ff7043;transform:translateY(-2px)}
-    .tool-icon{font-size:2.2rem;margin-bottom:10px}
-    .tool-card h3{color:#fff;font-size:1rem;margin-bottom:6px}
-    .tool-card p{color:#888;font-size:0.8rem}
-    .support-section{text-align:center;padding:30px;background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;margin-bottom:40px}
-    .btn{display:inline-block;background:#ff7043;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:12px}
-    footer{text-align:center;padding:24px 0;color:#444;font-size:0.85rem;border-top:1px solid #1a1a2e}
-    @media(max-width:768px){.grid-3{grid-template-columns:1fr 1fr}}
-    @media(max-width:480px){.grid-3{grid-template-columns:1fr}}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    nav .logo{font-family:Outfit,sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-0.5px}
+    nav .logo span{color:var(--accent)}
+    nav a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s}
+    nav a:hover{color:var(--text)}
+
+    .hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 60px;position:relative}
+    .hero .bg-glow{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--accent-dim) 0%,transparent 70%);pointer-events:none}
+    .hero .tag{font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(249,115,22,0.25);padding:5px 16px;border-radius:100px;margin-bottom:24px}
+    .hero h1{font-family:Outfit,sans-serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-2px;max-width:700px;margin:0 auto 16px}
+    .hero h1 span{background:linear-gradient(135deg,#f97316,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.05rem;color:var(--muted);max-width:500px;margin:0 auto 8px;line-height:1.7}
+    .hero .badges{display:flex;gap:8px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+    .hero .badges span{font-size:0.7rem;padding:4px 12px;border:1px solid var(--border);border-radius:100px;color:var(--muted)}
+
+    .tool-grid{max-width:1100px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+    .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 24px;text-decoration:none;color:var(--text);transition:all 0.3s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity 0.3s}
+    .tool-card:hover::before{opacity:1}
+    .tool-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.25)}
+    .tool-card .icon{font-size:1.8rem;margin-bottom:12px}
+    .tool-card h3{font-family:Outfit,sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:6px}
+    .tool-card p{font-size:0.85rem;color:var(--muted);flex:1;line-height:1.6}
+    .tool-card .use{font-size:0.75rem;color:var(--accent);margin-top:14px;font-weight:500}
+
+    .kofi-bar{padding:40px 24px;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .kofi-bar h2{font-family:Outfit,sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px}
+    .kofi-bar p{color:var(--muted);font-size:0.9rem;margin-bottom:16px}
+    .kofi-bar .btn{display:inline-block;padding:12px 28px;border-radius:100px;background:var(--accent);color:#fff;font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.2s}
+    .kofi-bar .btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px var(--accent-dim)}
+
+    footer{padding:32px 24px;text-align:center;color:var(--muted);font-size:0.8rem}
+    footer a{color:var(--accent);text-decoration:none}
+
+    @media(max-width:768px){
+      .tool-grid{grid-template-columns:1fr}
+      nav .hero-btn{display:none}
+    }
   </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="logo">ToolKit<span>Pro</span></div>
-    <div><a href="https://ko-fi.com/hossamhassan86778">Support</a></div>
-  </header>
+  <nav>
+    <div class="logo"><span>◆</span> ToolKit<span>Pro</span></div>
+    <a href="https://ko-fi.com/hossamhassan86778">Support on Ko-fi</a>
+  </nav>
 
   <section class="hero">
-    <h1>Free Online Tools</h1>
-    <p>Built by <a href="https://ko-fi.com/hossamhassan86778" class="kofi-link">Dr. Hossam</a>. No signup, no tracking, no ads abuse. Just useful tools.</p>
+    <div class="bg-glow"></div>
+    <div class="tag">6 Free Tools</div>
+    <h1>Browser Tools<br><span>That Just Work</span></h1>
+    <p>No uploads, no servers, no signups. All processing happens in your browser. Private, fast, and completely free.</p>
+    <div class="badges">
+      <span>100% Private</span>
+      <span>No Uploads</span>
+      <span>Browser-Based</span>
+      <span>Free Forever</span>
+    </div>
   </section>
 
-  <section class="grid-3">
-    <a href="tools/qr-generator.html" class="tool-card" target="_blank">
-      <div class="tool-icon">📱</div>
+  <div class="tool-grid">
+    <a href="tools/qr-generator.html" class="tool-card">
+      <div class="icon">📱</div>
       <h3>QR Code Generator</h3>
-      <p>URL, text, WiFi, vCard. Multiple formats.</p>
+      <p>Generate QR codes for URLs, text, WiFi networks, and vCards. Download as PNG.</p>
+      <div class="use">Generate a QR Code</div>
     </a>
-    <a href="tools/image-resizer.html" class="tool-card" target="_blank">
-      <div class="tool-icon">🖼️</div>
+    <a href="tools/image-resizer.html" class="tool-card">
+      <div class="icon">🖼️</div>
       <h3>Image Resizer</h3>
-      <p>Resize, compress, convert format. Client-side.</p>
+      <p>Resize, compress, and convert images. Supports JPG, PNG, and WebP formats.</p>
+      <div class="use">Resize an Image</div>
     </a>
-    <a href="tools/text-summarizer.html" class="tool-card" target="_blank">
-      <div class="tool-icon">📝</div>
+    <a href="tools/text-summarizer.html" class="tool-card">
+      <div class="icon">📝</div>
       <h3>Text Summarizer</h3>
-      <p>Summarize articles and documents fast.</p>
+      <p>Paste any article or document and get a concise summary in seconds.</p>
+      <div class="use">Summarize Text</div>
     </a>
-    <a href="tools/markdown-editor.html" class="tool-card" target="_blank">
-      <div class="tool-icon">✍️</div>
+    <a href="tools/markdown-editor.html" class="tool-card">
+      <div class="icon">✍️</div>
       <h3>Markdown Editor</h3>
-      <p>Live preview, export to HTML.</p>
+      <p>Write and preview Markdown in real time. Export clean HTML output.</p>
+      <div class="use">Write in Markdown</div>
     </a>
-    <a href="tools/calculator.html" class="tool-card" target="_blank">
-      <div class="tool-icon">🧮</div>
-      <h3>BMI Calculator</h3>
-      <p>BMI, BMR, ideal weight. Health metrics.</p>
+    <a href="tools/calculator.html" class="tool-card">
+      <div class="icon">💪</div>
+      <h3>BMI & Health Calculator</h3>
+      <p>Calculate your BMI, BMR, and ideal weight range. Built for medical professionals.</p>
+      <div class="use">Calculate Now</div>
     </a>
-    <a href="tools/pdf-merger.html" class="tool-card" target="_blank">
-      <div class="tool-icon">📄</div>
-      <h3>PDF Tools</h3>
-      <p>Merge PDFs in your browser.</p>
+    <a href="tools/pdf-merger.html" class="tool-card">
+      <div class="icon">📄</div>
+      <h3>PDF Merger</h3>
+      <p>Merge multiple PDFs into one document. All processing happens in your browser.</p>
+      <div class="use">Merge PDFs</div>
     </a>
-  </section>
+  </div>
 
-  <section class="support-section">
-    <p style="color:#ccc;">Enjoy the tools? Support the work on Ko-fi and get access to medical career resources for international doctors.</p>
-    <a href="https://ko-fi.com/hossamhassan86778/shop" class="btn">Visit the Shop</a>
-  </section>
+  <div class="kofi-bar">
+    <h2>Like These Tools?</h2>
+    <p>They're free because of support from people like you. Consider buying a coffee or grabbing a digital product.</p>
+    <a href="https://ko-fi.com/hossamhassan86778" class="btn">Support on Ko-fi</a>
+  </div>
 
   <footer>
-    <p>ToolKit Pro by <a href="https://ko-fi.com/hossamhassan86778" style="color:#ff7043;text-decoration:none">Dr. Hossam</a> &copy; 2026. Free tools for everyone.</p>
+    <p>ToolKit Pro by Dr. Hossam Hassan &middot; Free browser tools for everyone</p>
+    <p style="margin-top:4px"><a href="https://hosxam.github.io/business-system/dashboard/">Dashboard</a></p>
   </footer>
-</div>
 </body>
 </html>

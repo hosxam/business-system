@@ -3,101 +3,251 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>German Medical Residency Roadmap - Dr. Hossam Hassan</title>
-  <meta name="description" content="Free guide for international doctors pursuing careers in Germany. Get your step-by-step German medical residency roadmap.">
+  <title>German Medical Residency Roadmap — Dr. Hossam Hassan</title>
+  <meta name="description" content="Free guide for international doctors pursuing careers in Germany. Step-by-step roadmap from language prep to your first clinical job.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #050508;
+      --surface: #0b0b12;
+      --border: #181825;
+      --accent: #7c6cf0;
+      --accent-glow: rgba(124,108,240,0.15);
+      --text: #eaeef2;
+      --muted: #6b7280;
+      --green: #34d399;
+      --orange: #fb923c;
+    }
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;line-height:1.6}
-    .container{max-width:800px;margin:0 auto;padding:0 20px}
-    .hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px}
-    .hero .tag{background:#4fc3f7;color:#07070d;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.5px;display:inline-block;margin-bottom:20px}
-    .hero h1{font-size:2.6rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:12px}
-    .hero p{color:#888;font-size:1.1rem;max-width:600px;margin-bottom:24px}
-    .hero .btn{background:#4fc3f7;color:#07070d;padding:16px 40px;border-radius:8px;font-weight:700;font-size:1.05rem;text-decoration:none;display:inline-block;transition:all 0.2s}
-    .hero .btn:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(79,195,247,0.3)}
-    .hero .free{color:#555;font-size:0.85rem;margin-top:10px}
-    .section{padding:40px 0}
-    .section h2{font-size:1.5rem;color:#fff;margin-bottom:20px;text-align:center}
-    .grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px;margin:20px 0}
-    .gc{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:10px;padding:20px;text-align:center}
-    .gc .num{font-size:1.4rem;font-weight:700;color:#4fc3f7;margin-bottom:6px}
-    .gc .l{color:#666;font-size:0.8rem}
-    .card{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:24px;margin:16px 0}
-    .card h3{color:#4fc3f7;margin-bottom:8px;font-size:1.1rem}
-    .card p{color:#888;font-size:0.9rem}
-    .products{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
-    .pc{background:#0d0d1a;border:1px solid #1a1a2e;border-radius:12px;padding:24px;text-align:center}
-    .pc h3{color:#fff;font-size:1rem;margin-bottom:6px}
-    .pc .price{color:#4fc3f7;font-size:1.3rem;font-weight:700;margin:8px 0}
-    .pc .btn-s{background:transparent;border:1px solid #333;color:#888;padding:8px 20px;border-radius:6px;text-decoration:none;font-size:0.85rem;display:inline-block;margin-top:8px}
-    .pc .btn-s:hover{border-color:#4fc3f7;color:#4fc3f7}
-    .articles{margin:20px 0}
-    .article{padding:16px 0;border-bottom:1px solid #1a1a2e}
-    .article:last-child{border:none}
-    .article h4{color:#fff;font-size:1rem;margin-bottom:4px}
-    .article p{color:#666;font-size:0.85rem}
-    footer{text-align:center;padding:30px 0;color:#444;font-size:0.8rem;border-top:1px solid #1a1a2e}
-    @media(max-width:768px){.hero h1{font-size:1.8rem}.grid{grid-template-columns:1fr 1fr}.products{grid-template-columns:1fr}}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+    /* grain overlay */
+    body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+    /* nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,8,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    nav .logo{font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-0.5px}
+    nav .logo span{color:var(--accent)}
+    nav .links{display:flex;gap:24px}
+    nav .links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s}
+    nav .links a:hover{color:var(--text)}
+
+    /* hero */
+    .hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
+    .hero .bg-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
+    .hero .tag{font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(124,108,240,0.3);padding:6px 18px;border-radius:100px;margin-bottom:28px}
+    .hero h1{font-family:Syne,sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-2px;max-width:750px;margin:0 auto 20px}
+    .hero h1 .highlight{background:linear-gradient(135deg,var(--accent),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 36px;line-height:1.7}
+    .hero .btn-group{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .hero .btn-primary{padding:14px 36px;border-radius:100px;background:var(--accent);color:#fff;font-weight:600;font-size:0.95rem;text-decoration:none;transition:all 0.25s;border:none;cursor:pointer}
+    .hero .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px var(--accent-glow)}
+    .hero .btn-secondary{padding:14px 36px;border-radius:100px;border:1px solid var(--border);color:var(--text);font-weight:500;font-size:0.95rem;text-decoration:none;transition:all 0.25s;cursor:pointer}
+    .hero .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .hero .stats{display:flex;gap:48px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+    .hero .stat{text-align:center}
+    .hero .stat .num{font-family:Syne,sans-serif;font-size:1.8rem;font-weight:800;color:var(--text)}
+    .hero .stat .l{color:var(--muted);font-size:0.8rem;margin-top:2px}
+
+    /* marble bar */
+    .marquee{padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--surface)}
+    .marquee-inner{display:flex;gap:60px;animation:scroll 30s linear infinite;width:max-content}
+    .marquee-inner span{font-size:0.85rem;color:var(--muted);white-space:nowrap}
+    .marquee-inner span strong{color:var(--text);font-weight:500}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* sections */
+    .section{padding:80px 24px;max-width:1100px;margin:0 auto}
+    .section-label{font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .section h2{font-family:Syne,sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-1px;margin-bottom:16px}
+    .section h2 .highlight{background:linear-gradient(135deg,var(--accent),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* phase grid */
+    .phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:40px 0}
+    .phase-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 20px;text-align:center;transition:all 0.25s}
+    .phase-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+    .phase-card .num{font-family:Syne,sans-serif;font-size:2.2rem;font-weight:800;color:var(--accent);margin-bottom:8px;line-height:1}
+    .phase-card h3{font-size:1rem;font-weight:600;margin-bottom:4px}
+    .phase-card p{font-size:0.8rem;color:var(--muted)}
+
+    /* products */
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:40px 0}
+    .product-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 24px;display:flex;flex-direction:column;transition:all 0.25s;position:relative;overflow:hidden}
+    .product-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+    .product-card .label{font-size:0.65rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+    .product-card h3{font-family:Syne,sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:8px}
+    .product-card p{font-size:0.85rem;color:var(--muted);flex:1;line-height:1.6}
+    .product-card .price{font-family:Syne,sans-serif;font-size:1.5rem;font-weight:800;color:var(--text);margin:16px 0}
+    .product-card .price .free{color:var(--green)}
+    .product-card .btn{padding:10px 20px;border-radius:100px;background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;font-size:0.85rem;text-decoration:none;text-align:center;transition:all 0.2s}
+    .product-card .btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+    .product-card .badge-free{position:absolute;top:12px;right:12px;background:var(--green);color:#050508;font-size:0.6rem;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.5px}
+
+    /* articles */
+    .article-list{display:grid;gap:16px;margin:32px 0}
+    .article-item{padding:20px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;cursor:pointer;transition:all 0.2s}
+    .article-item:hover{padding-left:12px}
+    .article-item:last-child{border:none}
+    .article-item h4{font-size:1rem;font-weight:600;margin-bottom:4px}
+    .article-item p{font-size:0.85rem;color:var(--muted)}
+    .article-item .date{color:var(--muted);font-size:0.75rem;white-space:nowrap}
+
+    /* cta */
+    .cta-section{padding:80px 24px;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .cta-section h2{font-family:Syne,sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;margin-bottom:12px}
+    .cta-section p{color:var(--muted);max-width:500px;margin:0 auto 28px;font-size:1rem}
+
+    /* footer */
+    footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border)}
+    footer a{color:var(--accent);text-decoration:none}
+    footer .social{display:flex;gap:12px;justify-content:center;margin-top:16px}
+    footer .social a{padding:8px 16px;border:1px solid var(--border);border-radius:100px;font-size:0.75rem;color:var(--muted);text-decoration:none;transition:all 0.2s}
+    footer .social a:hover{border-color:var(--accent);color:var(--accent)}
+
+    @media(max-width:768px){
+      nav .links{display:none}
+      .hero .stats{gap:24px;flex-wrap:wrap}
+      .phase-grid{grid-template-columns:1fr 1fr}
+    }
   </style>
 </head>
 <body>
-<div class="hero">
-  <span class="tag">FREE GUIDE</span>
-  <h1>German Medical<br>Residency Roadmap</h1>
-  <p>Your step-by-step guide to becoming a licensed doctor in Germany. From language prep to your first clinical job.</p>
-  <a href="https://ko-fi.com/s/2de8b617f9" class="btn">Download Free Guide</a>
-  <div class="free">Free download. No signup required.</div>
-</div>
-
-<div class="section container">
-  <h2>What's Inside</h2>
-  <div class="grid">
-    <div class="gc"><div class="num">1</div><div class="l">Language Strategy</div></div>
-    <div class="gc"><div class="num">2</div><div class="l">Documents Overview</div></div>
-    <div class="gc"><div class="num">3</div><div class="l">Approbation Process</div></div>
-    <div class="gc"><div class="num">4</div><div class="l">Job Search</div></div>
-    <div class="gc"><div class="num">5</div><div class="l">Relocation</div></div>
-  </div>
-</div>
-
-<div class="section container">
-  <h2>Premium Resources</h2>
-  <p style="text-align:center;color:#555;font-size:0.9rem;margin-bottom:20px">Ready to go deeper? These resources will get you there faster.</p>
-  <div class="products">
-    <div class="pc">
-      <h3>Interview Prep Guide</h3>
-      <p style="color:#666;font-size:0.8rem">50+ mock Q&A</p>
-      <div class="price">$29</div>
-      <a href="https://ko-fi.com/s/08941e2c4e" class="btn-s">Buy on Ko-fi</a>
+  <nav>
+    <div class="logo"><span>✦</span> GermanMed<span>Path</span></div>
+    <div class="links">
+      <a href="#guide">Free Guide</a>
+      <a href="#products">Products</a>
+      <a href="#articles">Articles</a>
     </div>
-    <div class="pc">
-      <h3>Approbation Checklist</h3>
-      <p style="color:#666;font-size:0.8rem">22-item checklist</p>
-      <div class="price">$12</div>
-      <a href="https://ko-fi.com/s/5dc370fa64" class="btn-s">Buy on Ko-fi</a>
+  </nav>
+
+  <section class="hero">
+    <div class="bg-glow"></div>
+    <div class="tag">Free Resource for International Doctors</div>
+    <h1>Your Roadmap to a<br><span class="highlight">Medical Career in Germany</span></h1>
+    <p>From language preparation to your first day as a licensed physician in Germany. A complete, step-by-step guide built by a doctor who's been through it.</p>
+    <div class="btn-group">
+      <a href="https://ko-fi.com/s/2de8b617f9" class="btn-primary">Download Free Guide</a>
+      <a href="#products" class="btn-secondary">See Premium Resources</a>
     </div>
-    <div class="pc">
-      <h3>Flashcards Bundle</h3>
-      <p style="color:#666;font-size:0.8rem">1,000+ terms</p>
-      <div class="price">$19</div>
-      <a href="https://ko-fi.com/s/bc87ccedd0" class="btn-s">Buy on Ko-fi</a>
+    <div class="stats">
+      <div class="stat"><div class="num">5</div><div class="l">Phases</div></div>
+      <div class="stat"><div class="num">20+</div><div class="l">Pages</div></div>
+      <div class="stat"><div class="num">Free</div><div class="l">Always</div></div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span><strong>Approbation</strong> — Step-by-step licensing guide</span>
+      <span><strong>Goethe B2/C1</strong> — Language exam strategy</span>
+      <span><strong>Job Search</strong> — Find your first German hospital role</span>
+      <span><strong>Facharzt</strong> — Specialty training pathways</span>
+      <span><strong>Relocation</strong> — Visa, housing, insurance</span>
+      <span><strong>Approbation</strong> — Step-by-step licensing guide</span>
+      <span><strong>Goethe B2/C1</strong> — Language exam strategy</span>
+      <span><strong>Job Search</strong> — Find your first German hospital role</span>
+      <span><strong>Facharzt</strong> — Specialty training pathways</span>
+      <span><strong>Relocation</strong> — Visa, housing, insurance</span>
     </div>
   </div>
-</div>
 
-<div class="section container">
-  <h2>Free Articles</h2>
-  <div class="articles">
-    <div class="article"><h4>How to Get Your Approbation in 6 Months</h4><p>A practical timeline for international doctors. What to do month by month.</p></div>
-    <div class="article"><h4>Goethe B2 vs C1: Which One Do You Actually Need?</h4><p>State requirements, exam differences, and how to choose the right path.</p></div>
-    <div class="article"><h4>Top 5 German States for International Doctors</h4><p>Where to apply based on processing times, language requirements, and job availability.</p></div>
-    <div class="article"><h4>Facharzt in Germany: Your Specialty Options</h4><p>Which specialties are in demand and how to apply as an international doctor.</p></div>
-    <div class="article"><h4>Using AI to Learn Medical German Faster</h4><p>Practical tools and techniques to accelerate your Fachsprach knowledge.</p></div>
-  </div>
-</div>
+  <section class="section" id="guide">
+    <div class="section-label">What's Inside</div>
+    <h2>Five Phases. <span class="highlight">One Clear Path</span>.</h2>
+    <p style="color:var(--muted);max-width:600px;margin-bottom:24px">The roadmap covers every milestone from where you are now to working as a doctor in Germany.</p>
+    <div class="phase-grid">
+      <div class="phase-card"><div class="num">01</div><h3>Language Strategy</h3><p>Goethe exam roadmap, study plans, and timelines for B2 and C1.</p></div>
+      <div class="phase-card"><div class="num">02</div><h3>Document Collection</h3><p>What you need, where to get it, and how to authenticate everything.</p></div>
+      <div class="phase-card"><div class="num">03</div><h3>Approbation Process</h3><p>Step-by-step licensing walkthrough for international medical graduates.</p></div>
+      <div class="phase-card"><div class="num">04</div><h3>Job Search</h3><p>Where to find openings, how to apply, and interview preparation.</p></div>
+      <div class="phase-card"><div class="num">05</div><h3>Relocation</h3><p>Visa, housing, health insurance, and settling into German life.</p></div>
+    </div>
+  </section>
 
-<footer>
-  <p>Created by Dr. Hossam Hassan &middot; Powered by <a href="https://ko-fi.com/hossamhassan86778" style="color:#555">Ko-fi</a></p>
-</footer>
+  <section class="cta-section">
+    <h2>Start Your German Medical Journey</h2>
+    <p>Download the free roadmap. No signup, no strings attached. Just a clear path forward.</p>
+    <a href="https://ko-fi.com/s/2de8b617f9" class="hero btn-primary">Get the Free Guide</a>
+  </section>
+
+  <section class="section" id="products">
+    <div class="section-label">Premium Resources</div>
+    <h2>Go Deeper with <span class="highlight">Proven Tools</span></h2>
+    <p style="color:var(--muted);max-width:600px;margin-bottom:24px">Created by a doctor for international doctors. Every resource is practical, accurate, and immediately useful.</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="label">Best Seller</div>
+        <h3>Interview Prep Guide</h3>
+        <p>50+ mock questions with model answers, pronunciation guide for 200+ terms, and 5 full mock interview scripts. Prepare with confidence.</p>
+        <div class="price">$29</div>
+        <a href="https://ko-fi.com/s/08941e2c4e" class="btn">Buy on Ko-fi</a>
+      </div>
+      <div class="product-card">
+        <div class="label" style="color:var(--green)">Best Value</div>
+        <h3>Approbation Checklist</h3>
+        <p>22-item document checklist with state-by-state variations, authentication guide, timeline tracker, and sample cover letters. Save months of back-and-forth.</p>
+        <div class="price">$12</div>
+        <a href="https://ko-fi.com/s/5dc370fa64" class="btn">Buy on Ko-fi</a>
+      </div>
+      <div class="product-card">
+        <div class="label" style="color:var(--orange)">Most Popular</div>
+        <h3>Flashcards Bundle</h3>
+        <p>1,000+ medical German terms organized by body system. Each card has the term, translation, and a clinical example sentence. Anki-ready format.</p>
+        <div class="price">$19</div>
+        <a href="https://ko-fi.com/s/bc87ccedd0" class="btn">Buy on Ko-fi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="articles">
+    <div class="section-label">Free Articles</div>
+    <h2>Read, Learn, <span class="highlight">Prepare</span>.</h2>
+    <p style="color:var(--muted);max-width:600px;margin-bottom:16px">Practical advice for international doctors at every stage of the journey.</p>
+    <div class="article-list">
+      <div class="article-item">
+        <div><h4>How to Get Your Approbation in 6 Months</h4><p>A realistic month-by-month timeline for international medical graduates.</p></div>
+        <div class="date">Read</div>
+      </div>
+      <div class="article-item">
+        <div><h4>Goethe B2 vs C1 — Which One Do You Actually Need?</h4><p>State requirements, exam differences, and the fastest path to passing.</p></div>
+        <div class="date">Read</div>
+      </div>
+      <div class="article-item">
+        <div><h4>Top 5 German States for International Doctors</h4><p>Where to apply based on processing times, language requirements, and job availability.</p></div>
+        <div class="date">Read</div>
+      </div>
+      <div class="article-item">
+        <div><h4>Facharzt in Germany — Your Specialty Options</h4><p>Which specialties are in demand and how the training system works.</p></div>
+        <div class="date">Read</div>
+      </div>
+      <div class="article-item">
+        <div><h4>Using AI to Learn Medical German Faster</h4><p>Practical tools and techniques to accelerate your Fachsprach knowledge.</p></div>
+        <div class="date">Read</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready for the Next Step?</h2>
+    <p>Download the free roadmap, then grab the premium resources when you're ready to go deeper.</p>
+    <div class="hero btn-group" style="margin-top:0">
+      <a href="https://ko-fi.com/s/2de8b617f9" class="btn-primary">Free Roadmap</a>
+      <a href="https://ko-fi.com/hossamhassan86778/shop" class="btn-secondary">Shop All</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Created by Dr. Hossam Hassan &middot; Built for international doctors pursuing German medical careers</p>
+    <div class="social">
+      <a href="https://ko-fi.com/hossamhassan86778">Ko-fi Shop</a>
+      <a href="https://hosxam.github.io/business-system/dashboard/">Dashboard</a>
+    </div>
+  </footer>
 </body>
 </html>
