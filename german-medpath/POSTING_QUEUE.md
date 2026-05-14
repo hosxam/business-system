@@ -8,8 +8,8 @@ _Status values: Pending / Approved / Rejected / Posted / Failed_
 
 | ID | Platform | Target | Draft title | Link | UTM | Risk | Status | Scheduled | Posted | Result | Notes |
 |----|----------|--------|-------------|------|-----|------|--------|-----------|--------|--------|-------|
-| LI-01 | LinkedIn | Profile feed | Bundesland comparison | Yes | roadmap_launch | Low | Pending | May 14 | | | |
-| LI-02 | LinkedIn | Profile feed | FSP prep guide | No (profile link) | None | Low | Pending | May 16 | | | |
+| LI-01 | LinkedIn | Profile feed | Bundesland comparison | Yes | roadmap_launch | Low | Approved | May 14 | | | Approved by user |
+| LI-02 | LinkedIn | Profile feed | FSP prep guide | No (profile link) | None | Low | Rejected | May 16 | | | Rejected: no 2 LI posts same day |
 | LI-03 | LinkedIn | Profile feed | 6-month Approbation timeline | No (profile link) | None | Low | Pending | May 18 | | | Repeat of L2 from COPY_PASTE_DRAFTS |
 | LI-04 | LinkedIn | Profile feed | Document collection starts now | No | None | Low | Pending | May 20 | | | |
 | LI-05 | LinkedIn | Profile feed | Salary breakdown for IMGs | No (profile link) | None | Low | Pending | May 22 | | | |
@@ -22,11 +22,11 @@ _Status values: Pending / Approved / Rejected / Posted / Failed_
 
 | ID | Platform | Target group | Draft title | Link | Risk | Status | Scheduled | Posted | Notes |
 |----|----------|-------------|-------------|------|------|--------|-----------|--------|-------|
-| FC-01 | Facebook | Doctors Going to Germany | State choice: Sachsen fastest | No | Low | Pending | May 14 | | Reply to relevant post |
-| FC-02 | Facebook | Arab doctors | FSP prep: 4-6 weeks | No | Low | Pending | May 14 | | Reply to FSP question |
-| FC-03 | Facebook | Pakistani Doctors | Document collection advice | No | Low | Pending | May 14 | | Reply to documents question |
-| FC-04 | Facebook | Any group | Language: B2 vs C1 reality | No | Low | Pending | May 14 | | Reply to language question |
-| FC-05 | Facebook | Any group | Cost: 1,500-4,500 EUR budget | No | Low | Pending | May 14 | | Reply to cost question |
+| FC-01 | Facebook | Doctors Going to Germany | State choice: Sachsen fastest | No | Low | Approved | May 14 | | Approved by user |
+| FC-02 | Facebook | Arab doctors | FSP prep: 4-6 weeks | No | Low | Approved | May 14 | | Approved by user |
+| FC-03 | Facebook | Pakistani Doctors | Document collection advice | No | Low | Approved | May 14 | | Approved by user |
+| FC-04 | Facebook | Any group | Language: B2 vs C1 reality | No | Low | Approved | May 14 | | Approved by user |
+| FC-05 | Facebook | Any group | Cost: 1,500-4,500 EUR budget | No | Low | Approved | May 14 | | Approved by user |
 | FC-06 | Facebook | Any group | Job search: hospital career pages | No | Low | Pending | May 15 | | |
 | FC-07 | Facebook | Any group | FSP exam structure explained | No | Low | Pending | May 15 | | |
 | FC-08 | Facebook | Any group | Degree attestation timeline | No | Low | Pending | May 16 | | |
@@ -51,16 +51,16 @@ _Status values: Pending / Approved / Rejected / Posted / Failed_
 
 | ID | Platform | Target sub | Draft title | Link | Risk | Status | Scheduled | Posted | Notes |
 |----|----------|-----------|-------------|------|------|--------|-----------|--------|-------|
-| RC-01 | Reddit | r/medicalschoolEU | FSP prep time: 4-6 weeks with C1 | No | Low | Pending | When unlocked | | |
-| RC-02 | Reddit | r/medicalschoolEU | State comparisons: Sachsen fastest | No | Low | Pending | When unlocked | | |
-| RC-03 | Reddit | r/IMGreddit | Document authentication bottleneck | No | Low | Pending | When unlocked | | |
-| RC-04 | Reddit | r/medicalschoolEU | Salary: 55K EUR year 1 | No | Low | Pending | When unlocked | | |
-| RC-05 | Reddit | r/IMGreddit | C1 vs B2 reality check | No | Low | Pending | When unlocked | | |
-| RC-06 | Reddit | r/medicalschoolEU | Cost breakdown for process | No | Low | Pending | When unlocked | | |
-| RC-07 | Reddit | r/medizin | German drug names difference | No | Low | Pending | When unlocked | | |
-| RC-08 | Reddit | r/IMGreddit | Hospital interview expectations | No | Low | Pending | When unlocked | | |
-| RC-09 | Reddit | r/medicalschoolEU | First month overseas reality | No | Low | Pending | When unlocked | | |
-| RC-10 | Reddit | r/germany | Healthcare system transition | No | Low | Pending | When unlocked | | |
+| RC-01 | Reddit | r/medicalschoolEU | FSP prep time: 4-6 weeks with C1 | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-02 | Reddit | r/medicalschoolEU | State comparisons: Sachsen fastest | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-03 | Reddit | r/IMGreddit | Document authentication bottleneck | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-04 | Reddit | r/medicalschoolEU | Salary: 55K EUR year 1 | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-05 | Reddit | r/IMGreddit | C1 vs B2 reality check | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-06 | Reddit | r/medicalschoolEU | Cost breakdown for process | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-07 | Reddit | r/medizin | German drug names difference | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-08 | Reddit | r/IMGreddit | Hospital interview expectations | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-09 | Reddit | r/medicalschoolEU | First month overseas reality | No | Low | Rejected | When unlocked | | Rejected: account too new |
+| RC-10 | Reddit | r/germany | Healthcare system transition | No | Low | Rejected | When unlocked | | Rejected: account too new |
 
 ---
 
@@ -68,9 +68,9 @@ _Status values: Pending / Approved / Rejected / Posted / Failed_
 
 | ID | Platform | Target sub | Draft title | Link | Risk | Status | Scheduled | Posted | Notes |
 |----|----------|-----------|-------------|------|------|--------|-----------|--------|-------|
-| RP-01 | Reddit | r/medicalschoolEU | I mapped the Approbation timeline | No | Low | Pending | When unlocked + 48h after first comment | | |
-| RP-02 | Reddit | r/IMGreddit | Germany vs US comparison for IMGs | No | Low | Pending | 48h after RP-01 | | |
-| RP-03 | Reddit | r/medicalschoolEU | 5 things I wish I knew before starting | No | Low | Pending | 48h after RP-02 | | |
+| RP-01 | Reddit | r/medicalschoolEU | I mapped the Approbation timeline | No | Low | Rejected | When unlocked + 48h | | Rejected: account too new |
+| RP-02 | Reddit | r/IMGreddit | Germany vs US comparison for IMGs | No | Low | Rejected | 48h after RP-01 | | Rejected: account too new |
+| RP-03 | Reddit | r/medicalschoolEU | 5 things I wish I knew before starting | No | Low | Rejected | 48h after RP-02 | | Rejected: account too new |
 
 ---
 

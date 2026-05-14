@@ -99,13 +99,13 @@ footer .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:
 <div class="nav-logo" onclick="showPage('home')">&#11088; <span>Najm AI</span> (ClinicNote)</div>
 <div class="nav-links" id="navLinks">
 <a data-page="home" class="active" onclick="showPage('home')">Home</a>
-<a data-page="opd" onclick="showPage('opd')">OPD Builder</a>
+<a data-page="opd" data-nav="opd">OPD Builder</a>
 <a data-page="referral" onclick="showPage('referral')">Referral</a>
 <a data-page="instructions" onclick="showPage('instructions')">Instructions</a>
-<a data-page="presets" onclick="showPage('presets')">Presets</a>
+<a data-page="presets" data-nav="presets">Presets</a>
 <a data-page="about" onclick="showPage('about')">About</a>
 <a data-page="safety" onclick="showPage('safety')">Safety</a>
-<a class="nav-cta" onclick="showPage('opd')">Try ClinicNote</a>
+<a class="nav-cta" data-nav="opd">Try ClinicNote</a>
 </div>
 </div>
 </nav><div class="container"><div id="page-home" class="page active">
@@ -114,8 +114,8 @@ footer .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:
 <h1>OPD notes, structured <span>in seconds.</span></h1>
 <p>Turn your de-identified clinical notes into structured SOAP notes, short EMR entries, referral letters, and patient instructions. No AI scribes, no audio, no PHI.</p>
 <div class="hero-ctas">
-<button class="btn btn-primary" onclick="showPage('opd')">Try ClinicNote</button>
-<button class="btn btn-outline" onclick="showPage('presets')">View Specialty Presets</button>
+<button class="btn btn-primary" data-nav="opd">Try ClinicNote</button>
+<button class="btn btn-outline" data-nav="presets">View Specialty Presets</button>
 </div>
 </section>
 
@@ -123,12 +123,12 @@ footer .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:
 <h2 class="section-title">Specialty Presets</h2>
 <p class="section-sub">Choose a specialty to see its predefined visit types and prompts</p>
 <div class="card-grid">
-<div class="card specialty-card" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='gen';upVT();upP()},100)"><div class="card-icon">&#x1f0a1;</div><h3>General Medicine / GP</h3><p>Fever, cough, headaches, abdominal pain, diabetes and hypertension follow-ups, fatigue, general consultations.</p></div>
-<div class="card specialty-card" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='ortho';upVT();upP()},100)"><div class="card-icon">&#x1f9b4;</div><h3>Orthopedics / MSK</h3><p>Knee and low back pain, shoulder and neck pain, fracture and post-op follow-ups.</p></div>
-<div class="card specialty-card" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='peds';upVT();upP()},100)"><div class="card-icon">&#x1f476;</div><h3>Pediatrics</h3><p>Fever, cough/cold, vomiting/diarrhea, rash, poor feeding, and pediatric follow-ups.</p></div>
-<div class="card specialty-card" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='ent';upVT();upP()},100)"><div class="card-icon">&#x1f442;</div><h3>ENT</h3><p>Sore throat, ear pain, nasal congestion, dizziness, hearing complaints.</p></div>
-<div class="card specialty-card" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='derm';upVT();upP()},100)"><div class="card-icon">&#x1f9f4;</div><h3>Dermatology</h3><p>Rash, acne, eczema, fungal infections, wound reviews.</p></div>
-<div class="card specialty-card" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='obgyn';upVT();upP()},100)"><div class="card-icon">&#x1f469;</div><h3>OB/GYN</h3><p>Antenatal follow-ups, irregular bleeding, pelvic pain, discharge, contraception counseling.</p></div>
+<div class="card specialty-card" data-spec="gen" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='gen';upVT();upP()},100)"><div class="card-icon">&#x1f0a1;</div><h3>General Medicine / GP</h3><p>Fever, cough, headaches, abdominal pain, diabetes and hypertension follow-ups, fatigue, general consultations.</p></div>
+<div class="card specialty-card" data-spec="ortho" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='ortho';upVT();upP()},100)"><div class="card-icon">&#x1f9b4;</div><h3>Orthopedics / MSK</h3><p>Knee and low back pain, shoulder and neck pain, fracture and post-op follow-ups.</p></div>
+<div class="card specialty-card" data-spec="peds" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='peds';upVT();upP()},100)"><div class="card-icon">&#x1f476;</div><h3>Pediatrics</h3><p>Fever, cough/cold, vomiting/diarrhea, rash, poor feeding, and pediatric follow-ups.</p></div>
+<div class="card specialty-card" data-spec="ent" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='ent';upVT();upP()},100)"><div class="card-icon">&#x1f442;</div><h3>ENT</h3><p>Sore throat, ear pain, nasal congestion, dizziness, hearing complaints.</p></div>
+<div class="card specialty-card" data-spec="derm" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='derm';upVT();upP()},100)"><div class="card-icon">&#x1f9f4;</div><h3>Dermatology</h3><p>Rash, acne, eczema, fungal infections, wound reviews.</p></div>
+<div class="card specialty-card" data-spec="obgyn" onclick="showPage('opd');setTimeout(function(){var s=document.getElementById('specialty');s.value='obgyn';upVT();upP()},100)"><div class="card-icon">&#x1f469;</div><h3>OB/GYN</h3><p>Antenatal follow-ups, irregular bleeding, pelvic pain, discharge, contraception counseling.</p></div>
 </div>
 </section>
 
@@ -651,6 +651,20 @@ function buildPresets() {
 document.addEventListener("DOMContentLoaded", function() {
   buildPresets();
   upVT();
+  document.querySelectorAll("[data-page]").forEach(function(el){
+    el.addEventListener("click",function(e){e.preventDefault();showPage(el.getAttribute("data-page"))})
+  });
+  document.querySelectorAll("[data-nav]").forEach(function(el){
+    el.addEventListener("click",function(){showPage(el.getAttribute("data-nav"))})
+  });
+  document.querySelectorAll(".specialty-card").forEach(function(el){
+    el.addEventListener("click",function(){
+      showPage("opd");
+      var s=document.getElementById("specialty");
+      s.value=el.getAttribute("data-spec");
+      upVT();upP()
+    })
+  })
 });
 
 </script></body>
