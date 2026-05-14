@@ -26,8 +26,22 @@
 - Created: 2026-05-13
 - Status: Active, logged in, onboarding complete. Needs profile photo, banner, and summary.
 
+## Facebook
+- Profile name: Najm Hassan (had to use real name, Facebook rejects brand names)
+- Email: najm151120@gmail.com
+- Password: Aqwaqwaqw1!
+- Profile ID: 61589884733892
+- Birthdate: June 1, 1993
+- Created: 2026-05-14
+- Status: Active, verified with code 13336, logged in
+- Groups joined:
+  - Doctors Going to Germany (80.4K members) - post made (pending admin approval)
+  - Doctors in Germany - الأطباء العرب في ألمانيا (127.6K members) - joined
+  - Pakistani Doctors in Germany (4.3K members) - joined + commented with value + Ko-fi link
+
 ## Next Steps
-1. Build karma on Reddit (upvote useful content, leave helpful comments where possible)
+1. Wait for Reddit account to age (3-7 days) before commenting/posting
 2. Add profile photo and summary to LinkedIn
-3. Write Reddit post templates for when account is old enough to post
-4. Consider Facebook groups for IMGs in Germany
+3. Post in more FB groups after posts get approved
+4. Send cold email follow-ups from email-followup-sequence.md
+5. Fix Ko-fi branding from Hossam Hassan to GermanMedPath

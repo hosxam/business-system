@@ -67,6 +67,40 @@ Central control panel for the GermanMedPath traffic-and-sales system. Update dai
 | Clinic bounces | 4 |
 | Clinic replies | 0 |
 
+## 2B. Automation Status
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Posting automation | Semi-autonomous | Browser-assisted. Needs manual approval before publish. |
+| LinkedIn can post? | Yes (browser) | If session is active. 1 post/day max. |
+| Facebook can comment? | Fragile (React UI) | evaluate-based value setting may fail. Fallback to manual paste. |
+| Facebook can post? | Fragile (React UI + admin approval) | Posts may go to pending regardless. |
+| Reddit can post? | No (account locked) | Check daily. 3-7 day restriction. |
+| Gmail can send? | Yes (browser) | But requires explicit approval per email. |
+| Approvals needed? | Yes | All publish/send/reply actions require approval (per LOW_RISK_AUTONOMOUS_MODE.md) |
+| Daily prompt ready? | Yes | Send "Run daily operator" to execute |
+
+### Posting Queue Status (from POSTING_QUEUE.md)
+
+| Queue | Total | Pending | Approved | Posted | Rejected | Failed |
+|-------|-------|---------|----------|--------|----------|--------|
+| LinkedIn | 7 | 7 | 0 | 0 | 0 | 0 |
+| Facebook comments | 10 | 10 | 0 | 0 | 0 | 0 |
+| Facebook posts | 5 | 5 | 0 | 0 | 0 | 0 |
+| Reddit comments | 10 | 10 | 0 | 0 | 0 | 0 |
+| Reddit posts | 3 | 3 | 0 | 0 | 0 | 0 |
+| Clinic emails | 16 | 16 | 0 | 0 | 0 | 0 |
+
+### Last Activity Log
+| Field | Value |
+|-------|-------|
+| Last posted item | — (nothing posted via automation yet) |
+| Last approved item | — |
+| Last rejected item | — |
+| Last failure | — |
+| Posting limits today | LinkedIn: 0/1, FB comments: 0/5, FB posts: 0/1, Reddit: 0/0 (locked) |
+| Risk notes | See AUTOMATION_CAPABILITY_AUDIT.md and POSTING_AGENT_RULES.md |
+
 ---
 
 ## 3. Daily Metrics Tracker
